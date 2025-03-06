@@ -9,6 +9,11 @@ public class PowerSystem : MonoBehaviour
 
     public float fuerzaJalo = 5f;
 
+    public float damageExplosion=120;
+    public float damageEmpuje=30;
+
+
+
 
     // Habilidad de explosión (AddExplosionForce)
     public float fuerzaExplosion = 10f; // Fuerza de la explosión
@@ -55,6 +60,16 @@ public class PowerSystem : MonoBehaviour
         if (objetivo.rigidbody != false)
         {
             objetivo.rigidbody.AddForce(camaraJugador.forward * fuerzaEmpuje, ForceMode.Impulse);
+            bool esEnemigo= objetivo.collider.GetComponent<EnemigoVida>();
+            
+            
+            if (esEnemigo)
+            {
+                EnemigoVida vidaEnemigo = objetivo.collider.GetComponent<EnemigoVida>();
+                vidaEnemigo.recibirDamage(damageEmpuje);
+               
+
+            }
         }
     }
 
@@ -85,10 +100,24 @@ public class PowerSystem : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
+            
+
+
+
+
             Rigidbody rb = col.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                bool esEnemigo = col.GetComponent<EnemigoVida>();
                 rb.AddExplosionForce(fuerzaExplosion, explosionPosition, distanciaExplosion, levantadoExplosion, ForceMode.Impulse); // Aplicar fuerza explosiva
+
+                if (esEnemigo)
+                {
+                    EnemigoVida vidaEnemigo = col.GetComponent<EnemigoVida>();
+                    vidaEnemigo.recibirDamage(damageExplosion);
+
+
+                }
             }
         }
     }
