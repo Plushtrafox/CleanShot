@@ -270,7 +270,6 @@ GameObject:
   - component: {fileID: 347301557}
   - component: {fileID: 347301556}
   - component: {fileID: 347301555}
-  - component: {fileID: 347301559}
   m_Layer: 0
   m_Name: propsExtras (9)
   m_TagString: Untagged
@@ -394,19 +393,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347301553}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &347301559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347301553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +792,6 @@ GameObject:
   - component: {fileID: 782852784}
   - component: {fileID: 782852783}
   - component: {fileID: 782852782}
-  - component: {fileID: 782852786}
   m_Layer: 0
   m_Name: propsExtras (7)
   m_TagString: Untagged
@@ -930,19 +915,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782852780}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &782852786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782852780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &828485381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1016,7 @@ GameObject:
   - component: {fileID: 843907279}
   - component: {fileID: 843907284}
   - component: {fileID: 843907285}
+  - component: {fileID: 843907286}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1163,7 +1136,7 @@ Transform:
   m_GameObject: {fileID: 843907277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 1.23, z: 3.94}
+  m_LocalPosition: {x: -3.83, y: 1.23, z: 3.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1205,11 +1178,21 @@ MonoBehaviour:
   fuerzaEmpuje: 50
   rangoEmpuje: 50
   fuerzaJalo: 15
-  damageExplosion: 90
-  damageEmpuje: 20
   fuerzaExplosion: 59.8
   distanciaExplosion: 5
   levantadoExplosion: 0.5
+--- !u!114 &843907286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843907277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdfb39657408aac43b323fdf2e715b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &925239242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,7 +1206,6 @@ GameObject:
   - component: {fileID: 925239246}
   - component: {fileID: 925239245}
   - component: {fileID: 925239244}
-  - component: {fileID: 925239248}
   m_Layer: 0
   m_Name: propsExtras (2)
   m_TagString: Untagged
@@ -1347,19 +1329,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925239242}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &925239248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925239242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &955678803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,7 +1450,6 @@ GameObject:
   - component: {fileID: 958154387}
   - component: {fileID: 958154386}
   - component: {fileID: 958154385}
-  - component: {fileID: 958154389}
   m_Layer: 0
   m_Name: propsExtras
   m_TagString: Untagged
@@ -1605,19 +1573,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958154383}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &958154389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958154383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1043725120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,10 +1586,12 @@ GameObject:
   - component: {fileID: 1043725122}
   - component: {fileID: 1043725121}
   - component: {fileID: 1043725125}
+  - component: {fileID: 1043725127}
   - component: {fileID: 1043725126}
+  - component: {fileID: 1043725128}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1654,12 +1611,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2103629, y: 1.0965149, z: 1.2178701}
+  m_Center: {x: 0.017306566, y: 0.04825753, z: 0.040906012}
 --- !u!23 &1043725122
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1755,7 +1712,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1043725126
+--- !u!95 &1043725126
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043725120}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1043725127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1764,10 +1743,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043725120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3383c7c3151a9894b861a0a29533fbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaEnemigo: 100
+  rutina: 0
+  cronometro: 0
+  ani: {fileID: 0}
+  angulo: {x: 0, y: 0, z: 0, w: 0}
+  grado: 0
+  ataque: 0
+--- !u!65 &1043725128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043725120}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1054573374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,7 +1786,6 @@ GameObject:
   - component: {fileID: 1054573378}
   - component: {fileID: 1054573377}
   - component: {fileID: 1054573376}
-  - component: {fileID: 1054573380}
   m_Layer: 0
   m_Name: propsExtras (10)
   m_TagString: Untagged
@@ -1905,19 +1909,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054573374}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1054573380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054573374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1161286517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,7 +2148,6 @@ GameObject:
   - component: {fileID: 1363997005}
   - component: {fileID: 1363997004}
   - component: {fileID: 1363997003}
-  - component: {fileID: 1363997007}
   m_Layer: 0
   m_Name: propsExtras (4)
   m_TagString: Untagged
@@ -2281,19 +2271,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363997001}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1363997007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363997001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1384100651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,7 +2284,6 @@ GameObject:
   - component: {fileID: 1384100655}
   - component: {fileID: 1384100654}
   - component: {fileID: 1384100653}
-  - component: {fileID: 1384100657}
   m_Layer: 0
   m_Name: propsExtras (6)
   m_TagString: Untagged
@@ -2431,19 +2407,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384100651}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1384100657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384100651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1390786851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2601,7 +2564,6 @@ GameObject:
   - component: {fileID: 1507509884}
   - component: {fileID: 1507509883}
   - component: {fileID: 1507509882}
-  - component: {fileID: 1507509886}
   m_Layer: 0
   m_Name: propsExtras (1)
   m_TagString: Untagged
@@ -2725,19 +2687,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507509880}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1507509886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507509880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1581613790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,7 +2700,6 @@ GameObject:
   - component: {fileID: 1581613794}
   - component: {fileID: 1581613793}
   - component: {fileID: 1581613792}
-  - component: {fileID: 1581613796}
   m_Layer: 0
   m_Name: propsExtras (8)
   m_TagString: Untagged
@@ -2875,19 +2823,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581613790}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1581613796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581613790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1707877193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,7 +2911,6 @@ GameObject:
   - component: {fileID: 1723380194}
   - component: {fileID: 1723380193}
   - component: {fileID: 1723380192}
-  - component: {fileID: 1723380196}
   m_Layer: 0
   m_Name: propsExtras (3)
   m_TagString: Untagged
@@ -3100,19 +3034,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723380190}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1723380196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723380190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1735489329
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,7 +3047,6 @@ GameObject:
   - component: {fileID: 1735489333}
   - component: {fileID: 1735489332}
   - component: {fileID: 1735489331}
-  - component: {fileID: 1735489335}
   m_Layer: 0
   m_Name: propsExtras (11)
   m_TagString: Untagged
@@ -3250,19 +3170,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735489329}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1735489335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735489329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &1739819338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,7 +3326,6 @@ GameObject:
   - component: {fileID: 1989399918}
   - component: {fileID: 1989399917}
   - component: {fileID: 1989399916}
-  - component: {fileID: 1989399920}
   m_Layer: 0
   m_Name: propsExtras (5)
   m_TagString: Untagged
@@ -3543,19 +3449,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989399914}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1989399920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989399914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaEnemigo: 100
 --- !u!1 &2143515901
 GameObject:
   m_ObjectHideFlags: 0
