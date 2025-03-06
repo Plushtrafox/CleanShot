@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
 
+
     }
     void Update()
     {
