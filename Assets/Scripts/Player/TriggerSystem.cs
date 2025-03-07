@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class TriggerSystem : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider coll)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (coll.CompareTag("EnemyHitbox"))
+        if (collision.CompareTag("EnemyHitbox"))
         {
-            print("Daño");
+            print("Damage");
         }
     }
 }
