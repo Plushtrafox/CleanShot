@@ -210,6 +210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1890811141}
   - {fileID: 531227656}
   m_Father: {fileID: 457666437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -270,6 +271,7 @@ GameObject:
   - component: {fileID: 347301557}
   - component: {fileID: 347301556}
   - component: {fileID: 347301555}
+  - component: {fileID: 347301559}
   m_Layer: 0
   m_Name: propsExtras (9)
   m_TagString: Untagged
@@ -393,6 +395,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347301553}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &347301559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347301553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +807,7 @@ GameObject:
   - component: {fileID: 782852784}
   - component: {fileID: 782852783}
   - component: {fileID: 782852782}
+  - component: {fileID: 782852786}
   m_Layer: 0
   m_Name: propsExtras (7)
   m_TagString: Untagged
@@ -915,6 +931,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782852780}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &782852786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782852780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &828485381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1046,7 @@ GameObject:
   - component: {fileID: 843907284}
   - component: {fileID: 843907285}
   - component: {fileID: 843907286}
+  - component: {fileID: 843907287}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1178,6 +1208,8 @@ MonoBehaviour:
   fuerzaEmpuje: 50
   rangoEmpuje: 50
   fuerzaJalo: 15
+  damageExplosion: 120
+  damageEmpuje: 30
   fuerzaExplosion: 59.8
   distanciaExplosion: 5
   levantadoExplosion: 0.5
@@ -1193,6 +1225,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfb39657408aac43b323fdf2e715b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &843907287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843907277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a23e48bb44485745815e85ce23d68b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4469687033243594882, guid: 2a010ae7ddec7e8458570c381ae24db3, type: 3}
+  spawnPoint: {fileID: 0}
+  shotForce: 1500
+  shotRate: 0.5
 --- !u!1 &925239242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1254,7 @@ GameObject:
   - component: {fileID: 925239246}
   - component: {fileID: 925239245}
   - component: {fileID: 925239244}
+  - component: {fileID: 925239248}
   m_Layer: 0
   m_Name: propsExtras (2)
   m_TagString: Untagged
@@ -1329,6 +1378,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925239242}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &925239248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925239242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &955678803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1512,7 @@ GameObject:
   - component: {fileID: 958154387}
   - component: {fileID: 958154386}
   - component: {fileID: 958154385}
+  - component: {fileID: 958154389}
   m_Layer: 0
   m_Name: propsExtras
   m_TagString: Untagged
@@ -1573,6 +1636,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958154383}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &958154389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958154383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1043725120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1665,7 @@ GameObject:
   - component: {fileID: 1043725127}
   - component: {fileID: 1043725126}
   - component: {fileID: 1043725128}
+  - component: {fileID: 1043725129}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: EnemyHitbox
@@ -1773,6 +1850,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1043725129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043725120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1054573374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1876,7 @@ GameObject:
   - component: {fileID: 1054573378}
   - component: {fileID: 1054573377}
   - component: {fileID: 1054573376}
+  - component: {fileID: 1054573380}
   m_Layer: 0
   m_Name: propsExtras (10)
   m_TagString: Untagged
@@ -1909,6 +2000,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054573374}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1054573380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054573374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1161286517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2252,7 @@ GameObject:
   - component: {fileID: 1363997005}
   - component: {fileID: 1363997004}
   - component: {fileID: 1363997003}
+  - component: {fileID: 1363997007}
   m_Layer: 0
   m_Name: propsExtras (4)
   m_TagString: Untagged
@@ -2271,6 +2376,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363997001}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1363997007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363997001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1384100651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,6 +2402,7 @@ GameObject:
   - component: {fileID: 1384100655}
   - component: {fileID: 1384100654}
   - component: {fileID: 1384100653}
+  - component: {fileID: 1384100657}
   m_Layer: 0
   m_Name: propsExtras (6)
   m_TagString: Untagged
@@ -2407,6 +2526,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384100651}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1384100657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384100651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1390786851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2564,6 +2696,7 @@ GameObject:
   - component: {fileID: 1507509884}
   - component: {fileID: 1507509883}
   - component: {fileID: 1507509882}
+  - component: {fileID: 1507509886}
   m_Layer: 0
   m_Name: propsExtras (1)
   m_TagString: Untagged
@@ -2687,6 +2820,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507509880}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1507509886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507509880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1581613790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,6 +2846,7 @@ GameObject:
   - component: {fileID: 1581613794}
   - component: {fileID: 1581613793}
   - component: {fileID: 1581613792}
+  - component: {fileID: 1581613796}
   m_Layer: 0
   m_Name: propsExtras (8)
   m_TagString: Untagged
@@ -2823,6 +2970,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581613790}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1581613796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581613790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1707877193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,6 +3071,7 @@ GameObject:
   - component: {fileID: 1723380194}
   - component: {fileID: 1723380193}
   - component: {fileID: 1723380192}
+  - component: {fileID: 1723380196}
   m_Layer: 0
   m_Name: propsExtras (3)
   m_TagString: Untagged
@@ -3034,6 +3195,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723380190}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1723380196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723380190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1735489329
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,6 +3221,7 @@ GameObject:
   - component: {fileID: 1735489333}
   - component: {fileID: 1735489332}
   - component: {fileID: 1735489331}
+  - component: {fileID: 1735489335}
   m_Layer: 0
   m_Name: propsExtras (11)
   m_TagString: Untagged
@@ -3170,6 +3345,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735489329}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1735489335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735489329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &1739819338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3313,6 +3501,11 @@ Transform:
   - {fileID: 1739819339}
   m_Father: {fileID: 1390786852}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1890811141 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
+  m_PrefabInstance: {fileID: 1364020011727979911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1989399914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,6 +3519,7 @@ GameObject:
   - component: {fileID: 1989399918}
   - component: {fileID: 1989399917}
   - component: {fileID: 1989399916}
+  - component: {fileID: 1989399920}
   m_Layer: 0
   m_Name: propsExtras (5)
   m_TagString: Untagged
@@ -3449,6 +3643,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989399914}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1989399920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989399914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaEnemigo: 100
 --- !u!1 &2143515901
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,19 +3770,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 330585546}
     m_Modifications:
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.19478595
+      value: -0.136
       objectReference: {fileID: 0}
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6975985
+      value: -0.22540158
       objectReference: {fileID: 0}
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.396
+      value: 0.44399986
       objectReference: {fileID: 0}
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3583,15 +3790,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3903481655902103197, guid: bf54a427481a6144a93de40e250d7b33, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3702,4 +3909,3 @@ SceneRoots:
   - {fileID: 688388778}
   - {fileID: 516689596}
   - {fileID: 1284674867}
-  - {fileID: 1364020011727979911}
