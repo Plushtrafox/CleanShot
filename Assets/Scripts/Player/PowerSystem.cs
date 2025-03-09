@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,20 @@ public class PowerSystem : MonoBehaviour
     public float damageExplosion=120;
     public float damageEmpuje=30;
 
+    public Transform lugarSostenerObjeto;
+
+    public int poderActual = 0;
+
+    public Collider objetoSostenido;
+
+    public bool estaSosteniendo = false;
+
+    public Shot disparoScript;
+        //poderes
+        // 0 Empujar
+        // 1 Atraer
+        // 2 Explotar
+        // 3 Sostener
 
 
 
@@ -27,21 +42,37 @@ public class PowerSystem : MonoBehaviour
     void Update()
     {
 
-        // Habilidad de empuje (AddForce)
-        if (Input.GetKeyDown(KeyCode.E)) // Activar con la tecla E
+        if (estaSosteniendo)
         {
-            empujeObjectoPoder();
+            objetoSostenido.transform.position = lugarSostenerObjeto.position;
+            if (Input.GetButton("Fire1"))
+            {
+                dispararObjetoSostenidoPoder();
+            }
+        }
+        // Habilidad de empuje (AddForce)
+        if (Input.GetKeyDown(KeyCode.E) && !estaSosteniendo) // Activar con la tecla E
+        {
+            switch (poderActual)
+            {
+                case 0:
+                    empujeObjectoPoder();
+                    break;
+                case 1:
+                    jaloObjectoPoder();
+                    
+                    break;
+                case 2:
+                    ExplosionPoder();
+
+                    break;
+                case 3:
+                    sostenerObjectoPoder();
+                    break;
+            }
+            
         }
 
-        // Habilidad de explosión (AddExplosionForce)
-        if (Input.GetKeyDown(KeyCode.Q)) // Activar con la tecla Q
-        {
-            ExplosionPoder();
-        }
-        if (Input.GetKeyDown(KeyCode.R)) // Activar con la tecla Q
-        {
-            jaloObjectoPoder();
-        }
 
 
 
@@ -71,6 +102,34 @@ public class PowerSystem : MonoBehaviour
 
             }
         }
+    }
+
+    private void sostenerObjectoPoder()
+    {
+
+        RaycastHit objetivo;
+        Physics.Raycast(camaraJugador.position, camaraJugador.forward, out objetivo, 30f);
+
+        if (objetivo.rigidbody != false)
+        {
+            estaSosteniendo = true;
+            objetoSostenido = objetivo.collider;
+            objetoSostenido.transform.position = lugarSostenerObjeto.position;
+
+            disparoScript.estaSosteniendooObjetoPoder = true;
+
+        }
+
+    }
+    private void dispararObjetoSostenidoPoder()
+    {
+        Rigidbody rb = objetoSostenido.GetComponent<Rigidbody>();
+        rb.AddForce(camaraJugador.forward * fuerzaEmpuje, ForceMode.Impulse);
+
+        objetoSostenido = null;
+        estaSosteniendo = false;
+        disparoScript.estaSosteniendooObjetoPoder = false;
+
     }
 
     private void jaloObjectoPoder()

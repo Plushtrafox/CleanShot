@@ -11,6 +11,15 @@ public class CamaraController : MonoBehaviour
 
     float xRotation;
 
+    public GameObject mira;
+    public GameObject menuArmas;
+
+    public bool menuAbierto=false;
+
+    public MenuArmas menuDeArmas;
+
+    public int poderActual = 0;
+
 
     void Awake()
     {
@@ -29,5 +38,53 @@ public class CamaraController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         jugador.Rotate(Vector3.up * moverEnX);
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            abrirMenuArmas();
+        }
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            cerrarMenuArmas();
+        }
+    }
+
+
+    public void abrirMenuArmas()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        if(mira && menuArmas)
+        {
+            mira.SetActive(false);
+            menuArmas.SetActive(true);
+            menuAbierto = true;
+            pausarMenu();
+        }
+
+
+
+    }
+    public void cerrarMenuArmas()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        if (mira && menuArmas)
+        {
+            mira.SetActive(true);
+            menuArmas.SetActive(false);
+            menuAbierto = false;
+            resumirMenu();
+        }
+            
+
+    }
+    public void pausarMenu()
+    {
+        Time.timeScale = 0f;
+    }
+    public void resumirMenu()
+    {
+        Time.timeScale = 1f;
     }
 }
