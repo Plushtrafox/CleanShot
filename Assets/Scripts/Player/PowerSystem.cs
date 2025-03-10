@@ -21,6 +21,9 @@ public class PowerSystem : MonoBehaviour
 
     public bool estaSosteniendo = false;
 
+    public float escalarDisparoObjetivoSostenido=2f;
+    
+
     public Shot disparoScript;
         //poderes
         // 0 Empujar
@@ -30,9 +33,9 @@ public class PowerSystem : MonoBehaviour
 
 
 
-    // Habilidad de explosión (AddExplosionForce)
-    public float fuerzaExplosion = 10f; // Fuerza de la explosión
-    public float distanciaExplosion = 5f; // Radio de la explosión
+    // Habilidad de explosiï¿½n (AddExplosionForce)
+    public float fuerzaExplosion = 10f; // Fuerza de la explosiï¿½n
+    public float distanciaExplosion = 5f; // Radio de la explosiï¿½n
     public float levantadoExplosion = 0.5f; // Modificador de fuerza hacia arriba
 
 
@@ -80,11 +83,9 @@ public class PowerSystem : MonoBehaviour
 
 
 
-
-    // Habilidad de empuje (AddForce)
+// Habilidad de empuje (AddForce)
     private void empujeObjectoPoder()
     {
-
         RaycastHit objetivo;
         Physics.Raycast(camaraJugador.position, camaraJugador.forward, out objetivo, 30f);
 
@@ -104,6 +105,8 @@ public class PowerSystem : MonoBehaviour
         }
     }
 
+
+//habilidad de sostener
     private void sostenerObjectoPoder()
     {
 
@@ -124,7 +127,19 @@ public class PowerSystem : MonoBehaviour
     private void dispararObjetoSostenidoPoder()
     {
         Rigidbody rb = objetoSostenido.GetComponent<Rigidbody>();
-        rb.AddForce(camaraJugador.forward * fuerzaEmpuje, ForceMode.Impulse);
+        bool esEnemigo =objetoSostenido.GetComponent<ObjetoSostenidoDisparado>();
+
+        Vector3 targetDisparo = camaraJugador.forward;
+        targetDisparo.y=+escalarDisparoObjetivoSostenido;
+        
+        if(esEnemigo){
+            ObjetoSostenidoDisparado objetoDisparado = objetoSostenido.GetComponent<ObjetoSostenidoDisparado>();
+            objetoDisparado.objetoDisparo();
+
+        }
+        
+        
+        rb.AddForce(targetDisparo * fuerzaEmpuje, ForceMode.Impulse);
 
         objetoSostenido = null;
         estaSosteniendo = false;
@@ -132,13 +147,14 @@ public class PowerSystem : MonoBehaviour
 
     }
 
+//habilidad de atraer
     private void jaloObjectoPoder()
     {
 
         RaycastHit objetivo;
         Physics.Raycast(camaraJugador.position, camaraJugador.forward, out objetivo, 30f);
 
-        if (objetivo.rigidbody != false)
+        if (objetivo.rigidbody)
         {
             objetivo.rigidbody.AddForce((camaraJugador.forward * fuerzaJalo)*-1, ForceMode.Impulse);
         }
@@ -147,14 +163,14 @@ public class PowerSystem : MonoBehaviour
 
 
 
-    // Habilidad de explosión (AddExplosionForce)
+    // Habilidad de explosion
     private void ExplosionPoder()
     {
         RaycastHit objetivo;
         Physics.Raycast(camaraJugador.position, camaraJugador.forward, out objetivo, 30f);
 
 
-        Vector3 explosionPosition = objetivo.point; // Posición de la explosión (2 unidades hacia adelante)
+        Vector3 explosionPosition = objetivo.point; // Posiciï¿½n de la explosiï¿½n (2 unidades hacia adelante)
         Collider[] colliders = Physics.OverlapSphere(explosionPosition, distanciaExplosion); // Obtener objetos en el radio
 
         foreach (Collider col in colliders)
