@@ -12,6 +12,7 @@ public class IA : MonoBehaviour
 
     GameObject target;
     public bool ataque;
+    public Animator ani;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class IA : MonoBehaviour
 
     public void Comportamiento_Enemigo()
     {
-        if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 5)
+        if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 6)
         {
 
             cronometro += 1 * Time.deltaTime;
@@ -50,12 +51,12 @@ public class IA : MonoBehaviour
         else
         {
 
-            if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 1 && !ataque)
+            if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 4 && !ataque)
             {
                 var lookpos = target.transform.position - transform.position;
                 lookpos.y = 0;
                 var rotation = UnityEngine.Quaternion.LookRotation(lookpos);
-                transform.rotation = UnityEngine.Quaternion.RotateTowards(transform.rotation, rotation, 4);
+                transform.rotation = UnityEngine.Quaternion.RotateTowards(transform.rotation, rotation, 0);
                
                 transform.Translate(UnityEngine.Vector3.forward * 3 * Time.deltaTime);
             }

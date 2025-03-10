@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class IAWeapon : MonoBehaviour
 {
+    private GameObject target;
     public GameObject enemyBullet;
     public Transform enemyBulletPosition;
     private Transform playerPosition;
@@ -9,6 +10,7 @@ public class IAWeapon : MonoBehaviour
     ;
     void Start()
     {
+        target = GameObject.Find("Player");
         playerPosition = FindAnyObjectByType<PlayerController>().transform;
         Invoke("ShootPlayer",5);
     }
