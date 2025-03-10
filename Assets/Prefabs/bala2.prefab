@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6867397546616893592}
   - component: {fileID: 2360207883300177307}
   - component: {fileID: 7643565720136528857}
+  - component: {fileID: 3145151843889274170}
   m_Layer: 0
   m_Name: bala2
   m_TagString: Untagged
@@ -136,3 +137,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3145151843889274170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6649947864692908220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b458a3e7823233c4fa4359d613eeeb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  estaDisparado: 0
+  damageShot: 50

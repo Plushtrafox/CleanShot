@@ -23,6 +23,7 @@ public class Shot : MonoBehaviour
 
     public bool estaSosteniendooObjetoPoder=false;
 
+
     private void Awake()
     {
         for (int i=0; i < magSize; i++)
@@ -68,16 +69,13 @@ public class Shot : MonoBehaviour
             {
                 shotRateTime = 0;
             }
-
-
         }
-    
-
     }
 
     private void Shoot()
     {
         GameObject newBullet = municionDisponible.Dequeue();
+
 
         municionUsada.Add(newBullet);
 
@@ -92,6 +90,9 @@ public class Shot : MonoBehaviour
         rb.angularVelocity = Vector3.zero; // Reiniciar la velocidad angular
 
         rb.AddForce(spawnPoint.forward * shotForce);
+
+        BalaScript scriptDeBala=newBullet.GetComponent<BalaScript>();
+        scriptDeBala.objetoDisparo();
     }
 
     private void Reload()

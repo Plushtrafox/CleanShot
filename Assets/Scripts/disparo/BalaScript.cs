@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class ObjetoSostenidoDisparado : MonoBehaviour
+public class BalaScript : MonoBehaviour
 {
     public bool estaDisparado=false;
-    public EnemigoVida vidaDeEnemigo;
-
+    public float damageShot=5f;
 
     public void objetoDisparo(){
         estaDisparado=true;
@@ -16,14 +15,12 @@ public class ObjetoSostenidoDisparado : MonoBehaviour
         
         Collider objetoCollider = collision.collider;
         
-        vidaDeEnemigo.recibirDamage(20f);
-        
         bool esEnemigo= objetoCollider.GetComponent<EnemigoVida>();
             
         if (esEnemigo)
         {
             EnemigoVida vidaEnemigo = objetoCollider.GetComponent<EnemigoVida>();
-            vidaEnemigo.recibirDamage(10f);
+            vidaEnemigo.recibirDamage(damageShot);
                
 
         }
@@ -32,4 +29,5 @@ public class ObjetoSostenidoDisparado : MonoBehaviour
         
         
     }
+
 }
