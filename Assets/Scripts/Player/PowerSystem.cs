@@ -13,6 +13,8 @@ public class PowerSystem : MonoBehaviour
     public float damageExplosion=120;
     public float damageEmpuje=30;
 
+    public MenuPausa menuDePausa;
+
     public Transform lugarSostenerObjeto;
 
     public int poderActual = 0;
@@ -20,6 +22,12 @@ public class PowerSystem : MonoBehaviour
     public Collider objetoSostenido;
 
     public bool estaSosteniendo = false;
+
+    public float fuerzaDisparoObjetoSostenido = 1f;
+
+    public float maxFuerzaDisparoObjetoSostenido = 7f;
+
+    public float rapidezCargaDisparoObjetoSostenido = 2; 
 
     public float escalarDisparoObjetivoSostenido=2f;
     
@@ -45,37 +53,47 @@ public class PowerSystem : MonoBehaviour
     void Update()
     {
 
-        if (estaSosteniendo)
-        {
-            objetoSostenido.transform.position = lugarSostenerObjeto.position;
-            if (Input.GetButton("Fire1"))
-            {
-                dispararObjetoSostenidoPoder();
-            }
-        }
-        // Habilidad de empuje (AddForce)
-        if (Input.GetKeyDown(KeyCode.E) && !estaSosteniendo) // Activar con la tecla E
-        {
-            switch (poderActual)
-            {
-                case 0:
-                    empujeObjectoPoder();
-                    break;
-                case 1:
-                    jaloObjectoPoder();
-                    
-                    break;
-                case 2:
-                    ExplosionPoder();
 
-                    break;
-                case 3:
-                    sostenerObjectoPoder();
-                    break;
-            }
-            
-        }
+        if (menuDePausa.estaPausado == false)
+        {
+            if (estaSosteniendo)
+            {
+                objetoSostenido.transform.position = lugarSostenerObjeto.position;
+                if (Input.GetButton("Fire1") && fuerzaDisparoObjetoSostenido < maxFuerzaDisparoObjetoSostenido)
+                {
+                    fuerzaDisparoObjetoSostenido = fuerzaDisparoObjetoSostenido + rapidezCargaDisparoObjetoSostenido * Time.deltaTime;
 
+                }
+                if (Input.GetButtonUp("Fire1"))
+                {
+                    dispararObjetoSostenidoPoder();
+                }
+            }
+            // Habilidad de empuje (AddForce)
+            if (Input.GetKeyDown(KeyCode.E) && !estaSosteniendo) // Activar con la tecla E
+            {
+                switch (poderActual)
+                {
+                    case 0:
+                        empujeObjectoPoder();
+                        break;
+                    case 1:
+                        jaloObjectoPoder();
+
+                        break;
+                    case 2:
+                        ExplosionPoder();
+
+                        break;
+                    case 3:
+                        sostenerObjectoPoder();
+                        break;
+                }
+
+            }
+
+
+        }
 
 
 
@@ -126,24 +144,30 @@ public class PowerSystem : MonoBehaviour
     }
     private void dispararObjetoSostenidoPoder()
     {
-        Rigidbody rb = objetoSostenido.GetComponent<Rigidbody>();
-        bool esEnemigo =objetoSostenido.GetComponent<ObjetoSostenidoDisparado>();
-
-        Vector3 targetDisparo = camaraJugador.forward;
-        targetDisparo.y=+escalarDisparoObjetivoSostenido;
         
-        if(esEnemigo){
-            ObjetoSostenidoDisparado objetoDisparado = objetoSostenido.GetComponent<ObjetoSostenidoDisparado>();
-            objetoDisparado.objetoDisparo();
 
-        }
-        
-        
-        rb.AddForce(targetDisparo * fuerzaEmpuje, ForceMode.Impulse);
+            Rigidbody rb = objetoSostenido.GetComponent<Rigidbody>();
+            bool esEnemigo = objetoSostenido.GetComponent<ObjetoSostenidoDisparado>();
 
-        objetoSostenido = null;
-        estaSosteniendo = false;
-        disparoScript.estaSosteniendooObjetoPoder = false;
+            Vector3 targetDisparo = camaraJugador.forward;
+            targetDisparo.y = +escalarDisparoObjetivoSostenido;
+
+            if (esEnemigo)
+            {
+                ObjetoSostenidoDisparado objetoDisparado = objetoSostenido.GetComponent<ObjetoSostenidoDisparado>();
+                objetoDisparado.objetoDisparo();
+            }
+
+
+            rb.AddForce(targetDisparo * fuerzaDisparoObjetoSostenido, ForceMode.Impulse);
+
+            objetoSostenido = null;
+            estaSosteniendo = false;
+            disparoScript.estaSosteniendooObjetoPoder = false;
+        fuerzaDisparoObjetoSostenido = 0f;
+
+
+
 
     }
 

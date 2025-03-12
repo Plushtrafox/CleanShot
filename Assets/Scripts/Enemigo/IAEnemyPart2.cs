@@ -18,6 +18,7 @@ public class IAEnemyPart2 : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public Transform CanonBalaZona;
     public GameObject projectile;
     //States
     public float sightRange, attackRange;
@@ -25,7 +26,6 @@ public class IAEnemyPart2 : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
     private void Update()
@@ -74,7 +74,7 @@ public class IAEnemyPart2 : MonoBehaviour
         {
 
             //attack code
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody rb = Instantiate(projectile, CanonBalaZona.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 6f, ForceMode.Impulse);
 
@@ -86,16 +86,6 @@ public class IAEnemyPart2 : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }
-    public void TakeDamage(int damage)
-    {
-        //health -= damage;
-
-    //if (health <= 0) Invoke(nameof(DestryEnemy), 0.5f);
-    }
-    private void DestryEnemy()
-    {
-        Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()
     {

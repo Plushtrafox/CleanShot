@@ -14,11 +14,11 @@ public class CamaraController : MonoBehaviour
     public GameObject mira;
     public GameObject menuArmas;
 
-    public bool menuAbierto=false;
-
     public MenuArmas menuDeArmas;
 
-    public int poderActual = 0;
+    public MenuPausa menuDePausa;
+
+  
 
 
     void Awake()
@@ -47,19 +47,21 @@ public class CamaraController : MonoBehaviour
         {
             cerrarMenuArmas();
         }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            menuDePausa.PausarMenu();
+        }
     }
 
 
     public void abrirMenuArmas()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+
         if(mira && menuArmas)
         {
             mira.SetActive(false);
             menuArmas.SetActive(true);
-            menuAbierto = true;
-            pausarMenu();
+            menuDePausa.Pausar();
         }
 
 
@@ -67,24 +69,15 @@ public class CamaraController : MonoBehaviour
     }
     public void cerrarMenuArmas()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
         if (mira && menuArmas)
         {
             mira.SetActive(true);
             menuArmas.SetActive(false);
-            menuAbierto = false;
-            resumirMenu();
+            menuDePausa.Resumir();
         }
             
 
     }
-    public void pausarMenu()
-    {
-        Time.timeScale = 0f;
-    }
-    public void resumirMenu()
-    {
-        Time.timeScale = 1f;
-    }
+
 }

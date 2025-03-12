@@ -9,6 +9,8 @@ public class Shot : MonoBehaviour
     public Queue<GameObject> municionDisponible = new Queue<GameObject>();
     public List<GameObject> municionUsada = new List<GameObject>();
 
+    public MenuPausa menuDePausa;
+
     public int magSize = 10;
 
     public float shotForce = 1500f;
@@ -37,39 +39,44 @@ public class Shot : MonoBehaviour
 
     void Update()
     {
-        if (!estaSosteniendooObjetoPoder)
+        if (menuDePausa.estaPausado == false)
         {
-            if (reloading)
+            if (!estaSosteniendooObjetoPoder)
             {
-                tiempoTotalRecarga -= Time.deltaTime;
-
-                if (tiempoTotalRecarga <= 0) reloading = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.R) || municionDisponible.Count == 0)
-            {
-                Reload();
-            }
-
-            if (Input.GetButton("Fire1") && !reloading)
-            {
-                if (municionDisponible.Count > 0)
+                if (reloading)
                 {
-                    shotRateTime -= Time.deltaTime;
+                    tiempoTotalRecarga -= Time.deltaTime;
 
-                    if (shotRateTime <= 0)
+                    if (tiempoTotalRecarga <= 0) reloading = false;
+                }
+
+                if (Input.GetKeyDown(KeyCode.R) || municionDisponible.Count == 0)
+                {
+                    Reload();
+                }
+
+                if (Input.GetButton("Fire1") && !reloading)
+                {
+                    if (municionDisponible.Count > 0)
                     {
-                        Shoot();
+                        shotRateTime -= Time.deltaTime;
 
-                        shotRateTime = shotRate;
+                        if (shotRateTime <= 0)
+                        {
+                            Shoot();
+
+                            shotRateTime = shotRate;
+                        }
                     }
                 }
+                else
+                {
+                    shotRateTime = 0;
+                }
             }
-            else
-            {
-                shotRateTime = 0;
-            }
+
         }
+
     }
 
     private void Shoot()

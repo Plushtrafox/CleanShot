@@ -10,13 +10,12 @@ public class Enemigo1 : MonoBehaviour
     public UnityEngine.Quaternion angulo;
     public float grado;
 
-    GameObject target;
+    public GameObject target;
     public bool ataque;
 
     void Start()
     {
-        ani = GetComponent<Animator>();
-        target = GameObject.Find("Player");
+
     }
 
     public void Comportamiento_Enemigo()
