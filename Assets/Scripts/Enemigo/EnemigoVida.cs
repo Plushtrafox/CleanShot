@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemigoVida : MonoBehaviour
 {
+    public PuntosScript puntosDeKill;
 
     public float vidaEnemigo = 100;
 
