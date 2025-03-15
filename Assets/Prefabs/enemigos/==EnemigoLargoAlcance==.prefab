@@ -218,8 +218,6 @@ GameObject:
   - component: {fileID: 6100264841652484375}
   - component: {fileID: 4181292731959735080}
   - component: {fileID: 84085699525571276}
-  - component: {fileID: 548953551015976240}
-  - component: {fileID: 5393831049625389126}
   - component: {fileID: 9132706256896518030}
   - component: {fileID: 535502707929490099}
   - component: {fileID: 4275682174714296123}
@@ -323,39 +321,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &548953551015976240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8664426713191226292}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f83a329f1c2dd47a877798bc8bab4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rutina: 0
-  cronometro: 0
-  angulo: {x: 0, y: 0, z: 0, w: 0}
-  grado: 0
-  ataque: 0
-  ani: {fileID: 0}
---- !u!114 &5393831049625389126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8664426713191226292}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9fa3076e7d6af049a9e925fdf236e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 5040813075996288534, guid: 550d30cb184cef3448a0af70a3c48e6f, type: 3}
-  enemyBulletPosition: {fileID: 0}
-  bulletVelocity: 200
 --- !u!54 &9132706256896518030
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -447,4 +412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosDeKill: {fileID: 0}
+  puntosDeKillGameObject: {fileID: 0}
   vidaEnemigo: 100
+  puntosPorEliminar: 25

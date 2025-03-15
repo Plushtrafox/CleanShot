@@ -8,8 +8,12 @@ public class MenuPausa : MonoBehaviour
 
     public void PausarMenu()
     {
-        menuDePausaUI.SetActive(true);
-        Pausar();
+        if (menuDePausaUI)
+        {
+            menuDePausaUI.SetActive(true);
+            Pausar();
+        }
+
         
 
     }
@@ -22,11 +26,12 @@ public class MenuPausa : MonoBehaviour
     }
     public void ResumirMenu()
     {
+        menuDePausaUI.SetActive(false);
+
         Resumir();
     }
     public void Resumir()
     {
-        menuDePausaUI.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

@@ -11,8 +11,11 @@ public class EnemigoVida : MonoBehaviour
 
     private void Awake()
     {
-        puntosDeKillGameObject = GameObject.Find("PuntosManager");
-        if(puntosDeKillGameObject) puntosDeKill = puntosDeKillGameObject.GetComponent<PuntosScript>();
+        puntosDeKillGameObject = GameObject.Find("EscenaManager");
+        if (puntosDeKillGameObject)
+        {
+            puntosDeKill = puntosDeKillGameObject.GetComponent<PuntosScript>();
+        }
 
     }
 

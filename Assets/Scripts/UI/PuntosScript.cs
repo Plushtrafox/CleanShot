@@ -5,6 +5,8 @@ using UnityEngine;
 public class PuntosScript : MonoBehaviour
 {
     public TextMeshProUGUI puntosActualesUI;
+    public TextMeshProUGUI puntosTotalesUI;
+
 
 
     public int puntosActuales = 0;
@@ -14,6 +16,7 @@ public class PuntosScript : MonoBehaviour
     {
         puntosActuales += puntosPorSumar;
         puntosActualesUI.text = puntosActuales.ToString();
+        puntosTotalesUI.text = puntosActuales.ToString();
     }
 
 }

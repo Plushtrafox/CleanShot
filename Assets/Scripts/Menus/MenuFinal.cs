@@ -9,9 +9,31 @@ public class MenuFinal : MonoBehaviour
     
     public void ReintentarJuego()
     {
+        menuDePausa.ResumirMenu();
         SceneManager.LoadScene("Testing");
-        menuDePausa.Resumir();
+
        
+    }
+
+    public void IniciarJuego()
+    {
+
+        menuDePausa.Resumir();
+
+        SceneManager.LoadScene("Testing");
+
+    }
+    public void MenuPrincipal()
+    {
+        menuDePausa.Pausar();
+        SceneManager.LoadScene("MenuPrincipal");
+
+    }
+
+    public void SalirJuego()
+    {
+        Application.Quit();
+
     }
 
 }
