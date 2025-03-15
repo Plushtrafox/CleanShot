@@ -44,8 +44,6 @@ GameObject:
   - component: {fileID: 4526957905749543405}
   - component: {fileID: 909542459618331212}
   - component: {fileID: 7220850131377518565}
-  - component: {fileID: 2864160664689285538}
-  - component: {fileID: 6839188167974113408}
   - component: {fileID: 7139662697844508204}
   - component: {fileID: 8840597930543702524}
   - component: {fileID: 4478851954396194192}
@@ -150,39 +148,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2864160664689285538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2291815496428618423}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f83a329f1c2dd47a877798bc8bab4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rutina: 0
-  cronometro: 0
-  angulo: {x: 0, y: 0, z: 0, w: 0}
-  grado: 0
-  ataque: 0
-  ani: {fileID: 0}
---- !u!114 &6839188167974113408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2291815496428618423}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9fa3076e7d6af049a9e925fdf236e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 5040813075996288534, guid: 550d30cb184cef3448a0af70a3c48e6f, type: 3}
-  enemyBulletPosition: {fileID: 0}
-  bulletVelocity: 200
 --- !u!54 &7139662697844508204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -255,7 +220,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 1
-  CanonBalaZona: {fileID: 0}
+  CanonBalaZona: {fileID: 1166085914564638019}
   projectile: {fileID: 7511194704566180572, guid: 50075dc7416aeab44bd2a7e230abac4d, type: 3}
   sightRange: 20
   attackRange: 12
@@ -273,7 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd851aa59af78e41ad7742a6de5e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puntosDeKill: {fileID: 0}
+  puntosDeKillGameObject: {fileID: 0}
   vidaEnemigo: 100
+  puntosPorEliminar: 25
 --- !u!1 &2759470968932618021
 GameObject:
   m_ObjectHideFlags: 0

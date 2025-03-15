@@ -4,6 +4,7 @@ public class ObjetoSostenidoDisparado : MonoBehaviour
 {
     public bool estaDisparado=false;
     public EnemigoVida vidaDeEnemigo;
+    public int damageDisparo = 20;
 
 
     public void objetoDisparo(){
@@ -16,14 +17,14 @@ public class ObjetoSostenidoDisparado : MonoBehaviour
         
         Collider objetoCollider = collision.collider;
         
-        vidaDeEnemigo.recibirDamage(20f);
+        vidaDeEnemigo.recibirDamage(damageDisparo);
         
         bool esEnemigo= objetoCollider.GetComponent<EnemigoVida>();
             
         if (esEnemigo)
         {
             EnemigoVida vidaEnemigo = objetoCollider.GetComponent<EnemigoVida>();
-            vidaEnemigo.recibirDamage(10f);
+            vidaEnemigo.recibirDamage(damageDisparo/2);
                
 
         }

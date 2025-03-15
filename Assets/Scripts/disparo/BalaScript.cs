@@ -3,7 +3,7 @@ using UnityEngine;
 public class BalaScript : MonoBehaviour
 {
     public bool estaDisparado=false;
-    public float damageShot=5f;
+    public int damageShot=5;
 
     public void objetoDisparo(){
         estaDisparado=true;

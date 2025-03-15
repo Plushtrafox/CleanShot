@@ -10,8 +10,8 @@ public class PowerSystem : MonoBehaviour
 
     public float fuerzaJalo = 5f;
 
-    public float damageExplosion=120;
-    public float damageEmpuje=30;
+    public int damageExplosion=120;
+    public int damageEmpuje=30;
 
     public MenuPausa menuDePausa;
 

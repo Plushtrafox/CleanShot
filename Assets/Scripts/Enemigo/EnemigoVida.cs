@@ -4,18 +4,26 @@ public class EnemigoVida : MonoBehaviour
 {
     public PuntosScript puntosDeKill;
 
-    public float vidaEnemigo = 100;
+    public GameObject puntosDeKillGameObject;
 
+    public int vidaEnemigo = 100;
+    public int puntosPorEliminar = 25;
 
-    
-    public void recibirDamage(float damage)
+    private void Awake()
+    {
+        puntosDeKillGameObject = GameObject.Find("PuntosManager");
+        if(puntosDeKillGameObject) puntosDeKill = puntosDeKillGameObject.GetComponent<PuntosScript>();
+
+    }
+
+    public void recibirDamage(int damage)
     {
         vidaEnemigo -= damage;
 
         if (vidaEnemigo <= 0)
         {
-            Destroy(gameObject);
-                
+            puntosDeKill.SumarPuntos(puntosPorEliminar);
+            Destroy(gameObject);     
         }
     }
 }
