@@ -12,9 +12,12 @@ public class MenuArmas : MonoBehaviour
     public bool seleccionado = false;
     public Sprite iconoPoder;
 
+
     public CamaraController camaraControl;
 
     public PowerSystem sistemaPoder;
+
+
 
 
 
