@@ -24,9 +24,14 @@ public class IAEnemyPart2 : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        player = GameObject.Find("==Player==").transform;
+        CanonBalaZona = GameObject.Find("LugarBalas").transform;
     }
     private void Update()
     {

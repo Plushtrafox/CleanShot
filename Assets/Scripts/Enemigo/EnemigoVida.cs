@@ -25,8 +25,9 @@ public class EnemigoVida : MonoBehaviour
 
         if (vidaEnemigo <= 0)
         {
+            
+            Destroy(gameObject);
             puntosDeKill.SumarPuntos(puntosPorEliminar);
-            Destroy(gameObject);     
         }
     }
 }

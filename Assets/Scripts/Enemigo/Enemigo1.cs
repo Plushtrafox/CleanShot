@@ -13,8 +13,9 @@ public class Enemigo1 : MonoBehaviour
     public GameObject target;
     public bool ataque;
 
-    void Start()
+    void Awake()
     {
+        target = GameObject.Find("==Player==");
 
     }
 
