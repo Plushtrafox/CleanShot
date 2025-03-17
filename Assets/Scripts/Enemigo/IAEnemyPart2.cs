@@ -24,6 +24,7 @@ public class IAEnemyPart2 : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public GameObject projectile;
 
 
 
