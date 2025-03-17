@@ -187,7 +187,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 1
-  CanonBalaZona: {fileID: 0}
+  CanonBalaZona: {fileID: 3810958911656926485}
   projectile: {fileID: 7511194704566180572, guid: 50075dc7416aeab44bd2a7e230abac4d, type: 3}
   sightRange: 20
   attackRange: 12

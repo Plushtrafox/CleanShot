@@ -32,6 +32,7 @@ public class IAEnemyPart2 : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         player = GameObject.Find("==Player==").transform;
+
     }
     private void Update()
     {

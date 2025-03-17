@@ -48,10 +48,7 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
                     break;
             }
         }
-        else
-        {
-
-            if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 1 && !ataque)
+        else if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 1 )
             {
                 var lookpos = target.transform.position - transform.position;
                 lookpos.y = 0;
@@ -60,11 +57,8 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
                
                 transform.Translate(UnityEngine.Vector3.forward * velocidadPersecucion * Time.deltaTime);
             }
-            else
-            {
-                ataque = true;
-            }
-        }
+
+        
     }
     
 
