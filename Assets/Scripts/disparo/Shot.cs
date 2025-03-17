@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
+
 
 public class Shot : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class Shot : MonoBehaviour
     public Transform lugarMunicion;
     public Queue<GameObject> municionDisponible = new Queue<GameObject>();
     public List<GameObject> municionUsada = new List<GameObject>();
+
+    public GameObject recargandoUI;
 
     public MenuPausa menuDePausa;
 
@@ -43,12 +47,7 @@ public class Shot : MonoBehaviour
         {
             if (!estaSosteniendooObjetoPoder)
             {
-                if (reloading)
-                {
-                    tiempoTotalRecarga -= Time.deltaTime;
 
-                    if (tiempoTotalRecarga <= 0) reloading = false;
-                }
 
                 if (Input.GetKeyDown(KeyCode.R) || municionDisponible.Count == 0)
                 {
@@ -104,7 +103,9 @@ public class Shot : MonoBehaviour
 
     private void Reload()
     {
-        print("recargando empieza");
+        Invoke("TerminoRecarga", 1f);
+        
+        
         reloading = true;
         tiempoTotalRecarga = tiempoEntreRecarga;
 
@@ -114,7 +115,14 @@ public class Shot : MonoBehaviour
         }
 
         municionUsada.Clear();
-        print("recargando termina");
+        recargandoUI.SetActive(true);
+    }
+    void TerminoRecarga()
+    {
+        recargandoUI.SetActive(false);
+        reloading = false;
+
+
     }
 
     private void UseBullet(GameObject targetBullet)

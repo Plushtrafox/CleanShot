@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2040476695690465245}
   - component: {fileID: 3896430433956993095}
   - component: {fileID: 8148782711195699819}
-  - component: {fileID: 409674069759656375}
+  - component: {fileID: 3037670711724371005}
   m_Layer: 0
   m_Name: OjoCentral
   m_TagString: Untagged
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &409674069759656375
-SphereCollider:
+--- !u!136 &3037670711724371005
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,6 +105,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Radius: 0.5
+  m_Height: 0.99999994
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

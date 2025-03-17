@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class IAEnemyPart2 : MonoBehaviour
 {
+
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -31,7 +32,6 @@ public class IAEnemyPart2 : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         player = GameObject.Find("==Player==").transform;
-        CanonBalaZona = GameObject.Find("LugarBalas").transform;
     }
     private void Update()
     {

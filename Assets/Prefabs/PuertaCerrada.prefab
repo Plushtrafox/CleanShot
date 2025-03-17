@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1221255247192065913}
   - component: {fileID: 3433650627023747036}
   - component: {fileID: 1500071470097846817}
-  - component: {fileID: 8207386594477839784}
+  - component: {fileID: 3465989316768575476}
   m_Layer: 0
   m_Name: PuertaCerrada
   m_TagString: Untagged
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8207386594477839784
-MeshCollider:
+--- !u!65 &3465989316768575476
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +105,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 3
+  m_Size: {x: 10.000002, y: 2.2204466e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
