@@ -13,7 +13,7 @@ public class IAEnemyPart2 : MonoBehaviour
 
     //patrolling
     public Vector3 walkPoint;
-    bool walkPointSet;
+    bool walkPointSet = true;
     public float walkPointRange;
 
     //Attacking
@@ -32,7 +32,6 @@ public class IAEnemyPart2 : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         player = GameObject.Find("==Player==").transform;
-
     }
     private void Update()
     {
@@ -46,14 +45,15 @@ public class IAEnemyPart2 : MonoBehaviour
     }
     private void Patroling()
     {
+        print("Patrullando");
         if (walkPointSet) SearchWalkPoint();
         if(walkPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         //walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
-        walkPointSet = true;
-    }
+        if (distanceToWalkPoint.magnitude < 1f);
+        
+        }
     private void SearchWalkPoint()
     {
         //calculate random point in range
@@ -81,8 +81,8 @@ public class IAEnemyPart2 : MonoBehaviour
 
             //attack code
             Rigidbody rb = Instantiate(projectile, CanonBalaZona.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 6f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 42f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
