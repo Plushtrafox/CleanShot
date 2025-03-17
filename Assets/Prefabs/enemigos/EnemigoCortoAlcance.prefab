@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 7133454246021417146}
   - component: {fileID: 2928609275335595366}
   - component: {fileID: 889857707325702135}
-  - component: {fileID: 5617788784274270239}
   - component: {fileID: 5372793132967449922}
   - component: {fileID: 2310193573094385502}
   - component: {fileID: 2550140809337876069}
   - component: {fileID: 5818072616867261414}
   - component: {fileID: 706864250827928208}
+  - component: {fileID: 9180564751554903591}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemigoCortoAlcance
   m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,27 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5617788784274270239
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955692584110350974}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2103629, y: 1.0965149, z: 1.2178701}
-  m_Center: {x: 0.017306566, y: 0.04825753, z: 0.040906012}
 --- !u!54 &5372793132967449922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,6 +136,8 @@ MonoBehaviour:
   ani: {fileID: 0}
   angulo: {x: 0, y: 0, z: 0, w: 0}
   grado: 0
+  velocidad: 5
+  velocidadPersecucion: 10
   target: {fileID: 0}
   ataque: 0
 --- !u!114 &2550140809337876069
@@ -172,7 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosDeKill: {fileID: 0}
+  puntosDeKillGameObject: {fileID: 0}
   vidaEnemigo: 100
+  puntosPorEliminar: 25
 --- !u!114 &5818072616867261414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   estaDisparado: 0
   vidaDeEnemigo: {fileID: 2550140809337876069}
+  damageDisparo: 20
 --- !u!65 &706864250827928208
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,3 +192,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9180564751554903591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955692584110350974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca1857f276ec10468ef43acf8665869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiempoEntreAtaque: 1
+  jugador: {fileID: 0}
+  vidaJugador: {fileID: 0}
+  damageAtaque: 10

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    //
     public GameObject enemigoCortoAlcanze;
     public GameObject enemigoLargoAlcanze;
 
@@ -12,8 +11,6 @@ public class EnemySpawner : MonoBehaviour
     public int cantidadDeEnemigos = 10;
 
     public List<GameObject> enemyList = new List<GameObject>();
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

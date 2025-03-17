@@ -2,7 +2,7 @@ using System.Numerics;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Enemigo1 : MonoBehaviour
+public class EnemigoCortoAlcanceScript : MonoBehaviour
 {
     public int rutina;
     public float cronometro;
@@ -10,8 +10,12 @@ public class Enemigo1 : MonoBehaviour
     public UnityEngine.Quaternion angulo;
     public float grado;
 
+    public float velocidad = 5f;
+    public float velocidadPersecucion = 10f;
+
     public GameObject target;
     public bool ataque;
+
 
     void Awake()
     {
@@ -21,7 +25,7 @@ public class Enemigo1 : MonoBehaviour
 
     public void Comportamiento_Enemigo()
     {
-        if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 5)
+        if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 20)
         {
 
             cronometro += 1 * Time.deltaTime;
@@ -32,8 +36,6 @@ public class Enemigo1 : MonoBehaviour
             }
             switch (rutina)
             {
-                
-
                 case 0:
                     grado = UnityEngine.Random.Range(0, 360);
                     angulo = UnityEngine.Quaternion.Euler(0, grado, 0);
@@ -42,8 +44,7 @@ public class Enemigo1 : MonoBehaviour
 
                 case 1:
                     transform.rotation = UnityEngine.Quaternion.RotateTowards(transform.rotation, angulo, 0.5f);
-                    transform.Translate(UnityEngine.Vector3.forward * 1 * Time.deltaTime);
-                    
+                    transform.Translate(UnityEngine.Vector3.forward * velocidad * Time.deltaTime);
                     break;
             }
         }
@@ -57,7 +58,7 @@ public class Enemigo1 : MonoBehaviour
                 var rotation = UnityEngine.Quaternion.LookRotation(lookpos);
                 transform.rotation = UnityEngine.Quaternion.RotateTowards(transform.rotation, rotation, 4);
                
-                transform.Translate(UnityEngine.Vector3.forward * 3 * Time.deltaTime);
+                transform.Translate(UnityEngine.Vector3.forward * velocidadPersecucion * Time.deltaTime);
             }
             else
             {
@@ -65,11 +66,8 @@ public class Enemigo1 : MonoBehaviour
             }
         }
     }
+    
 
-    public void final_Ani()
-    {
-        ataque = false;
-    }    
     private void Update()
     {
         Comportamiento_Enemigo();
