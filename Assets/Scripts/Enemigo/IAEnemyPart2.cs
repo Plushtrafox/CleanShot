@@ -20,7 +20,7 @@ public class IAEnemyPart2 : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public Transform CanonBalaZona;
-    public GameObject projectile;
+
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -80,9 +80,9 @@ public class IAEnemyPart2 : MonoBehaviour
         {
 
             //attack code
-            Rigidbody rb = Instantiate(projectile, CanonBalaZona.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 6f, ForceMode.Impulse);
+           // Rigidbody rb = Instantiate(projectile, CanonBalaZona.position, Quaternion.identity).GetComponent<Rigidbody>();
+           // rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+           // rb.AddForce(transform.up * 6f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

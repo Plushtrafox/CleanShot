@@ -34,7 +34,6 @@ public class AtaqueEnemigoCortoAlcance : MonoBehaviour
 
     void damagePlayer()
     {
-        print("reducir vida");
         vidaJugador.reducirVida(damageAtaque);
 
     }
