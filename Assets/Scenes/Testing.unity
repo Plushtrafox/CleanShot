@@ -2564,6 +2564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a23e48bb44485745815e85ce23d68b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoDisparo: 0
   bullet: {fileID: 6649947864692908220, guid: db978d39e8786ec4c832fd908c52894c, type: 3}
   spawnPoint: {fileID: 602778017}
   lugarMunicion: {fileID: 1200831930}
@@ -3307,6 +3308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a101d410d5ac27346b83aaf402306ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  cantidadBalas: 15
+  lugarBalas: {fileID: 0}
 --- !u!1 &1149252038
 GameObject:
   m_ObjectHideFlags: 0
