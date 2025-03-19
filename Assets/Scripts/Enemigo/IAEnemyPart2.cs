@@ -21,6 +21,11 @@ public class IAEnemyPart2 : MonoBehaviour
     bool alreadyAttacked;
     public Transform CanonBalaZona;
 
+    public float disparoFuerza = 50f;
+    public float disparoAltura = 7f;
+
+    public EnemigoBalaSpawnManager balasManager;
+
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -46,7 +51,6 @@ public class IAEnemyPart2 : MonoBehaviour
     }
     private void Patroling()
     {
-        print("Patrullando");
         if (walkPointSet) SearchWalkPoint();
         if(walkPointSet) agent.SetDestination(walkPoint);
 
@@ -79,11 +83,26 @@ public class IAEnemyPart2 : MonoBehaviour
 
         if(!alreadyAttacked)
         {
+            GameObject balaDisparar=balasManager.DispararBala();//notifica del disparo a manager de balas y recibe el gameobject de la bala por disparar
+           
+            EnemyBullet balaScript = balaDisparar.GetComponent<EnemyBullet>();//buscar el script de la bala para notificar del disparo
+            
+
 
             //attack code
-            Rigidbody rb = Instantiate(projectile, CanonBalaZona.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 42f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            balaDisparar.transform.position = CanonBalaZona.position;//coloca bala en lugar de disparo
+
+            balaDisparar.SetActive(true);//activa la bala
+
+            balaDisparar.transform.rotation = quaternion.identity; //coloca rotacion correcta
+
+            Rigidbody rb = balaDisparar.GetComponent<Rigidbody>(); //busca el rigidbody de la bala para agregarle las fuerza de disparo
+
+            rb.AddForce(transform.forward * disparoFuerza, ForceMode.Impulse);//agrega fuerza hacia adelante
+
+            rb.AddForce(transform.up * disparoAltura, ForceMode.Impulse); //agrega fuerza hacia arriba
+
+            balaScript.Disparar(); //notifica a la bala que ha sido disparada
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

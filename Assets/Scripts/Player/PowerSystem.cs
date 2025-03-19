@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PowerSystem : MonoBehaviour
 {
@@ -23,21 +23,58 @@ public class PowerSystem : MonoBehaviour
 
     public bool estaSosteniendo = false;
 
-    public float fuerzaDisparoObjetoSostenido = 1f;
+    public float fuerzaDisparoObjetoSostenido = 10f;
 
-    public float maxFuerzaDisparoObjetoSostenido = 7f;
-
-    public float rapidezCargaDisparoObjetoSostenido = 2; 
 
     public float escalarDisparoObjetivoSostenido=2f;
-    
+
 
     public Shot disparoScript;
-        //poderes
-        // 0 Empujar
-        // 1 Atraer
-        // 2 Explotar
-        // 3 Sostener
+
+    [Header("Referencias al UI poderes")]
+    public Slider empujarPoderCargaUI;
+    public Slider sostenerPoderCargaUI;
+    public Slider atraerPoderCargaUI;
+    public Slider explotarPoderCargaUI;
+
+
+    [Header("Poderes Cooldown")]
+    public float empujeCooldown = 2f;
+    public float atraerCooldown = 1f;
+    public float sostenerCooldown = 3f;
+    public float explotarCooldown = 10f;
+
+    [Header("Poderes Cooldown porcentaje")]
+    public float empujeCooldownPorcentaje = 100f;
+    public float atraerCooldownPorcentaje = 100f;
+    public float sostenerCooldownPorcentaje = 100f;
+    public float explotarCooldownPorcentaje = 100f;
+
+
+    [Header("intervalo para actualizar UI de cooldown")]
+    public float cooldownIntervaloActualizacionUI = 0.2f;
+
+    [Header("porcentaje para actualizar UI de cooldown en cada intervalo")]
+    public float empujeCooldownPorcentajeActualizacionUI;
+    public float atraerCooldownPorcentajeActualizacionUI;
+    public float sostenerCooldownPorcentajeActualizacionUI;
+    public float explotarCooldownPorcentajeActualizacionUI;
+
+
+    [Header("Estado de poderes")]
+    public bool empujeActivo = true;
+    public bool atraerActivo = true;
+    public bool sostenerActivo = true;
+    public bool explotarActivo = true;
+
+
+
+
+    //poderes
+    // 0 Empujar
+    // 1 Atraer
+    // 2 Explotar
+    // 3 Sostener
 
 
 
@@ -56,18 +93,16 @@ public class PowerSystem : MonoBehaviour
 
         if (menuDePausa.estaPausado == false)
         {
+
             if (estaSosteniendo)
             {
                 objetoSostenido.transform.position = lugarSostenerObjeto.position;
-                if (Input.GetButton("Fire1") && fuerzaDisparoObjetoSostenido < maxFuerzaDisparoObjetoSostenido)
-                {
-                    fuerzaDisparoObjetoSostenido = fuerzaDisparoObjetoSostenido + rapidezCargaDisparoObjetoSostenido * Time.deltaTime;
-
-                }
-                if (Input.GetButtonUp("Fire1"))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     dispararObjetoSostenidoPoder();
+
                 }
+
             }
             // Habilidad de empuje (AddForce)
             if (Input.GetKeyDown(KeyCode.E) && !estaSosteniendo) // Activar con la tecla E
@@ -75,7 +110,7 @@ public class PowerSystem : MonoBehaviour
                 switch (poderActual)
                 {
                     case 0:
-                        empujeObjectoPoder();
+                        if(empujeActivo)empujeObjectoPoder();
                         break;
                     case 1:
                         jaloObjectoPoder();
@@ -86,7 +121,7 @@ public class PowerSystem : MonoBehaviour
 
                         break;
                     case 3:
-                        sostenerObjectoPoder();
+                        if (sostenerActivo) sostenerObjectoPoder();
                         break;
                 }
 
@@ -111,12 +146,22 @@ public class PowerSystem : MonoBehaviour
         {
             objetivo.rigidbody.AddForce(camaraJugador.forward * fuerzaEmpuje, ForceMode.Impulse);
             bool esEnemigo= objetivo.collider.GetComponent<EnemigoVida>();
-            
-            
+
+            // Calcula el incremento porcentual
+            empujeCooldownPorcentajeActualizacionUI = (100f / empujeCooldown) * cooldownIntervaloActualizacionUI;
+            empujeCooldownPorcentaje = 0f;//reinicia el cooldown
+            empujeActivo = false;
+
+            // Inicia la actualización repetitiva
+            InvokeRepeating("ActualizarBarraCooldownEmpuje", 0f, cooldownIntervaloActualizacionUI);
+
+
             if (esEnemigo)
             {
                 EnemigoVida vidaEnemigo = objetivo.collider.GetComponent<EnemigoVida>();
                 vidaEnemigo.recibirDamage(damageEmpuje);
+
+
                
 
             }
@@ -124,7 +169,31 @@ public class PowerSystem : MonoBehaviour
     }
 
 
-//habilidad de sostener
+
+
+    void ActualizarBarraCooldownEmpuje()
+    {
+        // Aumenta el porcentaje actual
+        empujeCooldownPorcentaje += empujeCooldownPorcentajeActualizacionUI;
+
+        // Limita el porcentaje a 100%
+        if (empujeCooldownPorcentaje >= 100f)
+        {
+            empujeActivo = true;
+            empujeCooldownPorcentaje = 100f;
+            CancelInvoke("ActualizarBarraCooldownEmpuje"); // Detiene la actualización repetitiva
+        }
+
+        // Actualiza la barra de UI
+        if (empujarPoderCargaUI != null)
+        {
+            empujarPoderCargaUI.value = empujeCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
+        }
+    }
+
+
+
+    //habilidad de sostener
     private void sostenerObjectoPoder()
     {
 
@@ -161,17 +230,49 @@ public class PowerSystem : MonoBehaviour
 
             rb.AddForce(targetDisparo * fuerzaDisparoObjetoSostenido, ForceMode.Impulse);
 
-            objetoSostenido = null;
+        // Calcula el incremento porcentual
+        sostenerCooldownPorcentajeActualizacionUI = (100f / sostenerCooldown) * cooldownIntervaloActualizacionUI;
+        sostenerCooldownPorcentaje = 0f;//reinicia el cooldown
+        sostenerActivo = false;
+
+        // Inicia la actualización repetitiva
+        InvokeRepeating("ActualizarBarraCooldownSostener", 0f, cooldownIntervaloActualizacionUI);
+
+        // sostenerActivo = false;
+        //Invoke("sostenerPoderEmpuje", sostenerCooldown);
+
+        objetoSostenido = null;
             estaSosteniendo = false;
             disparoScript.estaSosteniendooObjetoPoder = false;
-        fuerzaDisparoObjetoSostenido = 0f;
+
 
 
 
 
     }
 
-//habilidad de atraer
+    void ActualizarBarraCooldownSostener()
+    {
+        // Aumenta el porcentaje actual
+        sostenerCooldownPorcentaje += sostenerCooldownPorcentajeActualizacionUI;
+
+        // Limita el porcentaje a 100%
+        if (sostenerCooldownPorcentaje >= 100f)
+        {
+            sostenerActivo = true;
+            sostenerCooldownPorcentaje = 100f;
+            CancelInvoke("ActualizarBarraCooldownSostener"); // Detiene la actualización repetitiva
+        }
+
+        // Actualiza la barra de UI
+        if (sostenerPoderCargaUI != null)
+        {
+            sostenerPoderCargaUI.value = sostenerCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
+        }
+    }
+
+
+    //habilidad de atraer
     private void jaloObjectoPoder()
     {
 

@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public EnemigoBalaSpawnManager balaManager;
+
     public GameObject enemigoCortoAlcanze;
     public GameObject enemigoLargoAlcanze;
 
     public List<Transform> spawnerList = new List<Transform>();
+
     public bool enemies = false;
     public int cantidadDeEnemigos = 10;
 
@@ -23,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 GameObject newEnemy = Instantiate(enemigoLargoAlcanze);
                 newEnemy.transform.position = spawnerList[lugarAleatorio].position;
+                IAEnemyPart2 enemigoLargoAlcance = newEnemy.GetComponent<IAEnemyPart2>();
+                enemigoLargoAlcance.balasManager = balaManager;
                 enemyList.Add(newEnemy);
 
 

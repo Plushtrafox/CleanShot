@@ -189,11 +189,14 @@ MonoBehaviour:
   walkPointRange: 5
   timeBetweenAttacks: 2
   CanonBalaZona: {fileID: 3810958911656926485}
-  projectile: {fileID: 7511194704566180572, guid: 50075dc7416aeab44bd2a7e230abac4d, type: 3}
+  disparoFuerza: 50
+  disparoAltura: 7
+  balasManager: {fileID: 0}
   sightRange: 20
   attackRange: 12
   playerInSightRange: 0
   playerInAttackRange: 0
+  projectile: {fileID: 7511194704566180572, guid: 50075dc7416aeab44bd2a7e230abac4d, type: 3}
 --- !u!114 &4681171906658459066
 MonoBehaviour:
   m_ObjectHideFlags: 0
