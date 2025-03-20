@@ -56,7 +56,7 @@ public class IAEnemyPart2 : MonoBehaviour
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         //walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f);
+        
         
         }
     private void SearchWalkPoint()

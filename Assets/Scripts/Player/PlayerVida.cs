@@ -8,12 +8,13 @@ public class PlayerVida : MonoBehaviour
     public int vida = 100;
     public GameObject menuPerdida;
     public MenuPausa menuDePausa;
-    public TextMeshProUGUI valorVida;
+    public Slider valorVida;
 
     public void reducirVida(int damage)
     {
         vida -= damage;
-        valorVida.text=vida.ToString();
+        valorVida.value=vida;
+        print(valorVida.value);
 
 
         if (vida <= 0)

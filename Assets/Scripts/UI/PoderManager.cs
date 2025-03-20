@@ -20,4 +20,9 @@ public class PoderManager : MonoBehaviour
     {
         
     }
+
+    public void actualizarCooldownPoderActual()
+    {
+
+    }
 }

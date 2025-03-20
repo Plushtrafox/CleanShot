@@ -31,11 +31,14 @@ public class PowerSystem : MonoBehaviour
 
     public Shot disparoScript;
 
+    public MenuArmas menuDeArmas;
+
     [Header("Referencias al UI poderes")]
     public Slider empujarPoderCargaUI;
     public Slider sostenerPoderCargaUI;
     public Slider atraerPoderCargaUI;
     public Slider explotarPoderCargaUI;
+    public Slider barraPoderActualUI;
 
 
     [Header("Poderes Cooldown")]
@@ -113,25 +116,19 @@ public class PowerSystem : MonoBehaviour
                         if(empujeActivo)empujeObjectoPoder();
                         break;
                     case 1:
-                        jaloObjectoPoder();
+                        if (atraerActivo) jaloObjectoPoder();
 
                         break;
                     case 2:
-                        ExplosionPoder();
+                        if (explotarActivo) ExplosionPoder();
 
                         break;
                     case 3:
                         if (sostenerActivo) sostenerObjectoPoder();
                         break;
                 }
-
             }
-
-
         }
-
-
-
     }
 
 
@@ -154,6 +151,7 @@ public class PowerSystem : MonoBehaviour
 
             // Inicia la actualización repetitiva
             InvokeRepeating("ActualizarBarraCooldownEmpuje", 0f, cooldownIntervaloActualizacionUI);
+        
 
 
             if (esEnemigo)
@@ -167,14 +165,15 @@ public class PowerSystem : MonoBehaviour
             }
         }
     }
-
-
-
-
     void ActualizarBarraCooldownEmpuje()
     {
         // Aumenta el porcentaje actual
         empujeCooldownPorcentaje += empujeCooldownPorcentajeActualizacionUI;
+        if (poderActual == 0)
+        {
+            barraPoderActualUI.value = empujeCooldownPorcentaje / 100f;
+        
+        }
 
         // Limita el porcentaje a 100%
         if (empujeCooldownPorcentaje >= 100f)
@@ -238,8 +237,7 @@ public class PowerSystem : MonoBehaviour
         // Inicia la actualización repetitiva
         InvokeRepeating("ActualizarBarraCooldownSostener", 0f, cooldownIntervaloActualizacionUI);
 
-        // sostenerActivo = false;
-        //Invoke("sostenerPoderEmpuje", sostenerCooldown);
+
 
         objetoSostenido = null;
             estaSosteniendo = false;
@@ -250,11 +248,16 @@ public class PowerSystem : MonoBehaviour
 
 
     }
-
     void ActualizarBarraCooldownSostener()
     {
         // Aumenta el porcentaje actual
         sostenerCooldownPorcentaje += sostenerCooldownPorcentajeActualizacionUI;
+
+        if (poderActual == 3)
+        {
+            barraPoderActualUI.value = sostenerCooldownPorcentaje / 100f;
+
+        }
 
         // Limita el porcentaje a 100%
         if (sostenerCooldownPorcentaje >= 100f)
@@ -282,6 +285,39 @@ public class PowerSystem : MonoBehaviour
         if (objetivo.rigidbody)
         {
             objetivo.rigidbody.AddForce((camaraJugador.forward * fuerzaJalo)*-1, ForceMode.Impulse);
+
+            // Calcula el incremento porcentual
+            atraerCooldownPorcentajeActualizacionUI = (100f / atraerCooldown) * cooldownIntervaloActualizacionUI;
+            atraerCooldownPorcentaje = 0f;//reinicia el cooldown
+            atraerActivo = false;
+
+            // Inicia la actualización repetitiva
+            InvokeRepeating("ActualizarBarraCooldownAtraer", 0f, cooldownIntervaloActualizacionUI);
+        }
+    }
+    void ActualizarBarraCooldownAtraer()
+    {
+        // Aumenta el porcentaje actual
+        atraerCooldownPorcentaje += atraerCooldownPorcentajeActualizacionUI;
+
+        if (poderActual == 1)
+        {
+            barraPoderActualUI.value = atraerCooldownPorcentaje / 100f;
+
+        }
+
+        // Limita el porcentaje a 100%
+        if (atraerCooldownPorcentaje >= 100f)
+        {
+            atraerActivo = true;
+            atraerCooldownPorcentaje = 100f;
+            CancelInvoke("ActualizarBarraCooldownAtraer"); // Detiene la actualización repetitiva
+        }
+
+        // Actualiza la barra de UI
+        if (atraerPoderCargaUI != null)
+        {
+            atraerPoderCargaUI.value = atraerCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
         }
     }
 
@@ -297,6 +333,14 @@ public class PowerSystem : MonoBehaviour
 
         Vector3 explosionPosition = objetivo.point; // Posici�n de la explosi�n (2 unidades hacia adelante)
         Collider[] colliders = Physics.OverlapSphere(explosionPosition, distanciaExplosion); // Obtener objetos en el radio
+
+        // Calcula el incremento porcentual
+        explotarCooldownPorcentajeActualizacionUI = (100f / explotarCooldown) * cooldownIntervaloActualizacionUI;
+        explotarCooldownPorcentaje = 0f;//reinicia el cooldown
+        explotarActivo = false;
+
+        // Inicia la actualización repetitiva
+        InvokeRepeating("ActualizarBarraCooldownExplotar", 0f, cooldownIntervaloActualizacionUI);
 
         foreach (Collider col in colliders)
         {
@@ -321,4 +365,54 @@ public class PowerSystem : MonoBehaviour
             }
         }
     }
+    void ActualizarBarraCooldownExplotar()
+    {
+        // Aumenta el porcentaje actual
+        explotarCooldownPorcentaje += explotarCooldownPorcentajeActualizacionUI;
+
+        if (poderActual == 2)
+        {
+            barraPoderActualUI.value = explotarCooldownPorcentaje / 100f;
+
+        }
+
+        // Limita el porcentaje a 100%
+        if (explotarCooldownPorcentaje >= 100f)
+        {
+            explotarActivo = true;
+            explotarCooldownPorcentaje = 100f;
+            CancelInvoke("ActualizarBarraCooldownExplotar"); // Detiene la actualización repetitiva
+        }
+
+        // Actualiza la barra de UI
+        if (explotarPoderCargaUI != null)
+        {
+            explotarPoderCargaUI.value = explotarCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
+        }
+    }
+
+    //public void actualizarBarraPoderElegidoUI()
+    //{
+    //    switch (poderActual)
+    //    {
+    //        case 0:
+    //            if (!empujeActivo)
+    //            {
+    //                barraPoderActualUI.value = empujarPoderCargaUI.value;
+    //            }
+
+    //            break;
+    //        case 1:
+    //            if (!atraerActivo) jaloObjectoPoder();
+    //            break;
+    //        case 2:
+    //            if (!explotarActivo) ExplosionPoder();
+    //            break;
+    //        case 3:
+    //            if (!sostenerActivo) sostenerObjectoPoder();
+    //            break;
+    //    }
+    //}
+
+
 }

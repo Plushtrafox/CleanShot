@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 
 public class Shot : MonoBehaviour
@@ -14,6 +16,8 @@ public class Shot : MonoBehaviour
     public Transform lugarMunicion;
     public Queue<GameObject> municionDisponible = new Queue<GameObject>();
     public List<GameObject> municionUsada = new List<GameObject>();
+
+    public TextMeshProUGUI balasDisponiblesUI;
 
     public GameObject recargandoUI;
 
@@ -53,7 +57,7 @@ public class Shot : MonoBehaviour
             {
 
 
-                if (Input.GetKeyDown(KeyCode.R) || municionDisponible.Count == 0)
+                if (Input.GetKeyDown(KeyCode.R)&& municionDisponible.Count!= magSize || municionDisponible.Count == 0)
                 {
                     Reload();
                 }
@@ -169,6 +173,7 @@ public class Shot : MonoBehaviour
 
         BalaScript scriptDeBala=newBullet.GetComponent<BalaScript>();
         scriptDeBala.objetoDisparo();
+        actualizarBalasUI();
     }
 
     private void Reload()
@@ -186,11 +191,13 @@ public class Shot : MonoBehaviour
 
         municionUsada.Clear();
         recargandoUI.SetActive(true);
+        
     }
     void TerminoRecarga()
     {
         recargandoUI.SetActive(false);
         reloading = false;
+        actualizarBalasUI();
 
 
     }
@@ -205,5 +212,12 @@ public class Shot : MonoBehaviour
         targetBullet.SetActive(false);
         municionDisponible.Enqueue(targetBullet);
         targetBullet.transform.position = lugarMunicion.position;
+    }
+
+    public void actualizarBalasUI()
+    {
+        balasDisponiblesUI.text = municionDisponible.Count.ToString();
+
+
     }
 }
