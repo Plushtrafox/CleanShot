@@ -1,8 +1,14 @@
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemigoVida : MonoBehaviour
 {
     public PuntosScript puntosDeKill;
+
+    public Transform jugador;
+
+    public GameObject vidaEnemigoUI;
 
     public GameObject puntosDeKillGameObject;
 
@@ -16,8 +22,13 @@ public class EnemigoVida : MonoBehaviour
         {
             puntosDeKill = puntosDeKillGameObject.GetComponent<PuntosScript>();
         }
-
     }
+
+    private void Update()
+    {
+        
+    }
+
 
     public void recibirDamage(int damage)
     {
@@ -25,9 +36,12 @@ public class EnemigoVida : MonoBehaviour
 
         if (vidaEnemigo <= 0)
         {
-            
             Destroy(gameObject);
             puntosDeKill.SumarPuntos(puntosPorEliminar);
         }
+    }
+    public void mirarJugador()
+    {
+        vidaEnemigoUI.transform.forward=jugador.forward*-1;
     }
 }
