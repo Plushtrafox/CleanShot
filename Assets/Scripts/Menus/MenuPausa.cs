@@ -4,6 +4,7 @@ public class MenuPausa : MonoBehaviour
 {
     public GameObject menuDePausaUI;
     public bool estaPausado = false;
+    public GameObject menuInstrucciones;
 
 
     public void PausarMenu()
@@ -39,6 +40,11 @@ public class MenuPausa : MonoBehaviour
 
 
     }
+    public void abrirMenuIstrucciones()
+    {
+        menuInstrucciones.SetActive(true);
+    }
+
 
 
 }
