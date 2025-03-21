@@ -6,6 +6,8 @@ public class EnemigoVida : MonoBehaviour
 {
     public PuntosScript puntosDeKill;
 
+    public Slider vidaEnemigoSlider;
+
     public Transform jugador;
 
     public GameObject vidaEnemigoUI;
@@ -32,7 +34,10 @@ public class EnemigoVida : MonoBehaviour
 
     public void recibirDamage(int damage)
     {
+        
         vidaEnemigo -= damage;
+        vidaEnemigoSlider.value = vidaEnemigo;
+        print("recibio damage");
 
         if (vidaEnemigo <= 0)
         {

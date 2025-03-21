@@ -3,10 +3,11 @@ using UnityEngine;
 public class BalaScript : MonoBehaviour
 {
     public bool estaDisparado=false;
-    public int damageShot=5;
+    public int damageShot=50;
 
     public void objetoDisparo(){
         estaDisparado=true;
+        
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -16,11 +17,16 @@ public class BalaScript : MonoBehaviour
         Collider objetoCollider = collision.collider;
         
         bool esEnemigo= objetoCollider.GetComponent<EnemigoVida>();
-            
+
+        GameObject objeto = objetoCollider.gameObject;
+
+        print(objeto.name);
+
         if (esEnemigo)
         {
             EnemigoVida vidaEnemigo = objetoCollider.GetComponent<EnemigoVida>();
             vidaEnemigo.recibirDamage(damageShot);
+    
                
 
         }
