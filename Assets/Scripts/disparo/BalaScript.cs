@@ -18,9 +18,6 @@ public class BalaScript : MonoBehaviour
         
         bool esEnemigo= objetoCollider.GetComponent<EnemigoVida>();
 
-        GameObject objeto = objetoCollider.gameObject;
-
-        print(objeto.name);
 
         if (esEnemigo)
         {

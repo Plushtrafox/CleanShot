@@ -175,7 +175,6 @@ public class Shot : MonoBehaviour
         scriptDeBala.objetoDisparo();
         actualizarBalasUI();
 
-        print("disparo");
     }
 
     private void Reload()
