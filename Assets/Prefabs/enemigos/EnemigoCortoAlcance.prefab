@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4190744043874084615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2641202335743925615}
   - component: {fileID: 3143191718943066093}
   - component: {fileID: 1425823232079897631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 5818072616867261414}
   - component: {fileID: 706864250827928208}
   - component: {fileID: 9180564751554903591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemigoCortoAlcance
   m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3082673033322634994}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8927953563178222157}
   - component: {fileID: 9093283978199814325}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ValorVida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 5185690074320959703}
   - component: {fileID: 13855419675463366}
   - component: {fileID: 4206346597231156141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 6065818720724235189}
   - component: {fileID: 8113478613194300972}
   - component: {fileID: 7839063951916123670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 3715912212650643922}
   - component: {fileID: 4735459559930245858}
   - component: {fileID: 7702255371831458236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

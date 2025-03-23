@@ -7,8 +7,8 @@ using TMPro;
 
 
 public class Shot : MonoBehaviour
-{   
-     public enum TipoDisparo { Normal, Escopeta, Rafaga }
+{   //intento 2 de varias armas
+    public enum TipoDisparo { Normal, Escopeta, Rafaga }
     public TipoDisparo tipoDisparo;
 
     public GameObject bullet;
@@ -38,6 +38,11 @@ public class Shot : MonoBehaviour
     public bool estaSosteniendooObjetoPoder=false;
 
     public ParticleSystem disparoBalaVFX;
+
+    public GameObject arma;
+    public Transform camara;
+
+    public LayerMask enemigoObjetivo;
 
 
     private void Awake()
@@ -156,6 +161,7 @@ public class Shot : MonoBehaviour
 
     private void Shoot()
     {
+        ajustarAnguloArma();
         GameObject newBullet = municionDisponible.Dequeue();
 
 
@@ -180,6 +186,17 @@ public class Shot : MonoBehaviour
         actualizarBalasUI();
 
     }
+
+    void ajustarAnguloArma()
+    {
+        Physics.Raycast(camara.position, camara.forward, out RaycastHit objetivo, 60f, enemigoObjetivo);
+        arma.transform.LookAt(objetivo.transform);
+
+        Invoke("armaPosicionOriginal", 1f);
+
+    }
+
+
 
     private void Reload()
     {
