@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 
 public class Shot : MonoBehaviour
-{   
-     public enum TipoDisparo { Normal, Escopeta, Rafaga }
+{   //intento 2 de varias armas
+    public enum TipoDisparo { Normal, Escopeta, Rafaga }
     public TipoDisparo tipoDisparo;
 
     public GameObject bullet;
@@ -14,6 +16,8 @@ public class Shot : MonoBehaviour
     public Transform lugarMunicion;
     public Queue<GameObject> municionDisponible = new Queue<GameObject>();
     public List<GameObject> municionUsada = new List<GameObject>();
+
+    public TextMeshProUGUI balasDisponiblesUI;
 
     public GameObject recargandoUI;
 
@@ -32,6 +36,13 @@ public class Shot : MonoBehaviour
     private bool reloading;
 
     public bool estaSosteniendooObjetoPoder=false;
+
+    public ParticleSystem disparoBalaVFX;
+
+    public GameObject arma;
+    public Transform camara;
+
+    public LayerMask enemigoObjetivo;
 
 
     private void Awake()
@@ -53,7 +64,7 @@ public class Shot : MonoBehaviour
             {
 
 
-                if (Input.GetKeyDown(KeyCode.R) || municionDisponible.Count == 0)
+                if (Input.GetKeyDown(KeyCode.R)&& municionDisponible.Count!= magSize || municionDisponible.Count == 0)
                 {
                     Reload();
                 }
@@ -81,75 +92,76 @@ public class Shot : MonoBehaviour
         }
 
     }
-     private void Disparar()
-    {
-        switch (tipoDisparo)
-        {
-            case TipoDisparo.Normal:
-                DisparoNormal();
-                break;
-            case TipoDisparo.Escopeta:
-                DisparoEscopeta();
-                break;
-            case TipoDisparo.Rafaga:
-                StartCoroutine(DisparoRafaga());
-                break;
-        }
-    }
- private void DisparoNormal()
-    {
-        if (municionDisponible.Count == 0) return;
-        DispararBala(spawnPoint.position, spawnPoint.forward);
-    }
-     private void DisparoEscopeta()
-    {
-        int cantidadPerdigones = 6;
-        float dispersion = 10f;
+ //    private void Disparar()
+ //   {
+ //       switch (tipoDisparo)
+ //       {
+ //           case TipoDisparo.Normal:
+ //               DisparoNormal();
+ //               break;
+ //           case TipoDisparo.Escopeta:
+ //               DisparoEscopeta();
+ //               break;
+ //           case TipoDisparo.Rafaga:
+ //               StartCoroutine(DisparoRafaga());
+ //               break;
+ //       }
+ //   }
+ //private void DisparoNormal()
+ //   {
+ //       if (municionDisponible.Count == 0) return;
+ //       DispararBala(spawnPoint.position, spawnPoint.forward);
+ //   }
+ //    private void DisparoEscopeta()
+ //   {
+ //       int cantidadPerdigones = 6;
+ //       float dispersion = 10f;
 
-        for (int i = 0; i < cantidadPerdigones; i++)
-        {
-            Vector3 direccion = spawnPoint.forward;
-            direccion.x += Random.Range(-dispersion, dispersion) * 0.01f;
-            direccion.y += Random.Range(-dispersion, dispersion) * 0.01f;
-            DispararBala(spawnPoint.position, direccion.normalized);
-        }
-    }
-      private IEnumerator DisparoRafaga()
-    {
-        int cantidadDisparos = 3;
-        float delayEntreDisparos = 0.1f;
+ //       for (int i = 0; i < cantidadPerdigones; i++)
+ //       {
+ //           Vector3 direccion = spawnPoint.forward;
+ //           direccion.x += Random.Range(-dispersion, dispersion) * 0.01f;
+ //           direccion.y += Random.Range(-dispersion, dispersion) * 0.01f;
+ //           DispararBala(spawnPoint.position, direccion.normalized);
+ //       }
+ //   }
+ //     private IEnumerator DisparoRafaga()
+ //   {
+ //       int cantidadDisparos = 3;
+ //       float delayEntreDisparos = 0.1f;
 
-        for (int i = 0; i < cantidadDisparos; i++)
-        {
-            if (municionDisponible.Count > 0)
-            {
-                DispararBala(spawnPoint.position, spawnPoint.forward);
-                yield return new WaitForSeconds(delayEntreDisparos);
-            }
-        }
-    }
-     private void DispararBala(Vector3 posicion, Vector3 direccion)
-    {
-        if (municionDisponible.Count == 0) return;
+ //       for (int i = 0; i < cantidadDisparos; i++)
+ //       {
+ //           if (municionDisponible.Count > 0)
+ //           {
+ //               DispararBala(spawnPoint.position, spawnPoint.forward);
+ //               yield return new WaitForSeconds(delayEntreDisparos);
+ //           }
+ //       }
+ //   }
+ //    private void DispararBala(Vector3 posicion, Vector3 direccion)
+ //   {
+ //       if (municionDisponible.Count == 0) return;
 
-        GameObject newBullet = municionDisponible.Dequeue();
-        municionUsada.Add(newBullet);
+ //       GameObject newBullet = municionDisponible.Dequeue();
+ //       municionUsada.Add(newBullet);
 
-        newBullet.transform.position = posicion;
-        newBullet.transform.rotation = Quaternion.LookRotation(direccion);
-        newBullet.SetActive(true);
+ //       newBullet.transform.position = posicion;
+ //       newBullet.transform.rotation = Quaternion.LookRotation(direccion);
+ //       newBullet.SetActive(true);
 
-        Rigidbody rb = newBullet.GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        rb.AddForce(direccion * shotForce);
+ //       Rigidbody rb = newBullet.GetComponent<Rigidbody>();
+ //       rb.linearVelocity = Vector3.zero;
+ //       rb.angularVelocity = Vector3.zero;
+ //       rb.AddForce(direccion * shotForce);
 
-        BalaScript scriptDeBala = newBullet.GetComponent<BalaScript>();
-        scriptDeBala.objetoDisparo();
-    }
+ //       BalaScript scriptDeBala = newBullet.GetComponent<BalaScript>();
+ //       scriptDeBala.objetoDisparo();
+ //   }
 
     private void Shoot()
     {
+        ajustarAnguloArma();
         GameObject newBullet = municionDisponible.Dequeue();
 
 
@@ -167,9 +179,24 @@ public class Shot : MonoBehaviour
 
         rb.AddForce(spawnPoint.forward * shotForce);
 
+        disparoBalaVFX.Play();
+
         BalaScript scriptDeBala=newBullet.GetComponent<BalaScript>();
         scriptDeBala.objetoDisparo();
+        actualizarBalasUI();
+
     }
+
+    void ajustarAnguloArma()
+    {
+        Physics.Raycast(camara.position, camara.forward, out RaycastHit objetivo, 60f, enemigoObjetivo);
+        arma.transform.LookAt(objetivo.transform);
+
+
+
+    }
+
+
 
     private void Reload()
     {
@@ -186,11 +213,13 @@ public class Shot : MonoBehaviour
 
         municionUsada.Clear();
         recargandoUI.SetActive(true);
+        
     }
     void TerminoRecarga()
     {
         recargandoUI.SetActive(false);
         reloading = false;
+        actualizarBalasUI();
 
 
     }
@@ -205,5 +234,10 @@ public class Shot : MonoBehaviour
         targetBullet.SetActive(false);
         municionDisponible.Enqueue(targetBullet);
         targetBullet.transform.position = lugarMunicion.position;
+    }
+
+    public void actualizarBalasUI()
+    {
+        balasDisponiblesUI.text = municionDisponible.Count.ToString();
     }
 }
