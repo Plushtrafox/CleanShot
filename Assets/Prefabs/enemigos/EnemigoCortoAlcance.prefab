@@ -252,6 +252,13 @@ MonoBehaviour:
   velocidadPersecucion: 10
   target: {fileID: 0}
   ataque: 0
+  distanciaVerJugador: 20
+  distanciaCortoAlcance: 2
+  distanciaAtaqueCortoAlcance: 1
+  puedoAtacar: 1
+  tiempoEntreAtaque: 1
+  enemigoRB: {fileID: 5372793132967449922}
+  fuerzaRetrocesoAtaque: 10
 --- !u!114 &2550140809337876069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,10 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca1857f276ec10468ef43acf8665869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoEntreAtaque: 1
   jugador: {fileID: 0}
   vidaJugador: {fileID: 0}
-  damageAtaque: 10
+  movimientoEnemigoCortoAlcance: {fileID: 2310193573094385502}
 --- !u!1 &2830238916126466102
 GameObject:
   m_ObjectHideFlags: 0

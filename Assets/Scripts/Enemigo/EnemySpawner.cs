@@ -13,6 +13,18 @@ public class EnemySpawner : MonoBehaviour
     public bool enemies = false;
     public int cantidadDeEnemigos = 10;
 
+    public PlayerVida jugadorVida;
+
+    public GameObject jugador;
+
+    //nuevos
+
+    public GameObject managerDeEscena;
+
+    public PuntosScript scriptDePuntos;
+    
+    
+
     public List<GameObject> enemyList = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
     { 
        for (int i = 0;i < cantidadDeEnemigos; i++)
         {
+
             int enemigoPorCrearAleatorio = Random.Range(0, 10);
             int lugarAleatorio = Random.Range(0, spawnerList.Count-1);
             if (enemigoPorCrearAleatorio == 0 || enemigoPorCrearAleatorio ==1 || enemigoPorCrearAleatorio ==2 )
@@ -30,6 +43,11 @@ public class EnemySpawner : MonoBehaviour
                 enemigoLargoAlcance.balasManager = balaManager;
                 enemyList.Add(newEnemy);
 
+                EnemigoVida vidaNewEnemigo = newEnemy.GetComponent<EnemigoVida>();
+                vidaNewEnemigo.puntosDeKillGameObject = managerDeEscena;
+                vidaNewEnemigo.puntosDeKill = scriptDePuntos;
+
+              
 
             }
             else
@@ -37,6 +55,16 @@ public class EnemySpawner : MonoBehaviour
                 GameObject newEnemy = Instantiate(enemigoCortoAlcanze);
                 newEnemy.transform.position = spawnerList[lugarAleatorio].position;
                 enemyList.Add(newEnemy);
+
+                AtaqueEnemigoCortoAlcance enemigoCortoAlcance= newEnemy.GetComponent<AtaqueEnemigoCortoAlcance>();
+
+                enemigoCortoAlcance.vidaJugador = jugadorVida;
+                enemigoCortoAlcance.jugador = jugador;
+
+                EnemigoVida vidaNewEnemigo = newEnemy.GetComponent<EnemigoVida>();
+                vidaNewEnemigo.puntosDeKillGameObject = managerDeEscena;
+                vidaNewEnemigo.puntosDeKill = scriptDePuntos;
+
 
             }
            

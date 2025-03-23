@@ -16,6 +16,18 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
     public GameObject target;
     public bool ataque;
 
+    public float distanciaVerJugador = 20f;
+    public float distanciaCortoAlcance = 2f;
+    public float distanciaAtaqueCortoAlcance = 1f;
+
+    public bool puedoAtacar = true;
+
+    public float tiempoEntreAtaque = 1f;
+
+    public Rigidbody enemigoRB;
+
+    public float fuerzaRetrocesoAtaque = 2f;
+
 
     void Awake()
     {
@@ -25,7 +37,7 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
 
     public void Comportamiento_Enemigo()
     {
-        if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 20)
+        if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > distanciaVerJugador)
         {
 
             cronometro += 1 * Time.deltaTime;
@@ -48,22 +60,37 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
                     break;
             }
         }
-        else if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > 1 )
-            {
+        else if (UnityEngine.Vector3.Distance(transform.position, target.transform.position) > distanciaAtaqueCortoAlcance && puedoAtacar == true)
+        {
+            
                 var lookpos = target.transform.position - transform.position;
                 lookpos.y = 0;
                 var rotation = UnityEngine.Quaternion.LookRotation(lookpos);
                 transform.rotation = UnityEngine.Quaternion.RotateTowards(transform.rotation, rotation, 4);
-               
-                transform.Translate(UnityEngine.Vector3.forward * velocidadPersecucion * Time.deltaTime);
-            }
 
-        
+                transform.Translate(UnityEngine.Vector3.forward * velocidadPersecucion * Time.deltaTime);
+
+           
+        }
     }
     
 
     private void Update()
     {
         Comportamiento_Enemigo();
+    }
+
+    public void CancelarAtacarJugador()
+    {
+        puedoAtacar = false;
+        enemigoRB.AddForce((transform.forward*fuerzaRetrocesoAtaque)*-1,ForceMode.Impulse);
+       
+        Invoke("ActivarAtacarJugador", tiempoEntreAtaque);
+
+
+    }
+    public void ActivarAtacarJugador()
+    {
+        puedoAtacar = true;
     }
 }

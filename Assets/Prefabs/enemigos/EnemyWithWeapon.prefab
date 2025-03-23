@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosDeKill: {fileID: 0}
+  vidaEnemigoSlider: {fileID: 101232023376670599}
   jugador: {fileID: 0}
   vidaEnemigoUI: {fileID: 0}
   puntosDeKillGameObject: {fileID: 0}

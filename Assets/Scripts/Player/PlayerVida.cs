@@ -14,7 +14,7 @@ public class PlayerVida : MonoBehaviour
     {
         vida -= damage;
         valorVida.value=vida;
-        print(valorVida.value);
+    
 
 
         if (vida <= 0)

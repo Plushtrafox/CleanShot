@@ -17,19 +17,7 @@ public class EnemigoVida : MonoBehaviour
     public int vidaEnemigo = 100;
     public int puntosPorEliminar = 25;
 
-    private void Awake()
-    {
-        puntosDeKillGameObject = GameObject.Find("EscenaManager");
-        if (puntosDeKillGameObject)
-        {
-            puntosDeKill = puntosDeKillGameObject.GetComponent<PuntosScript>();
-        }
-    }
 
-    private void Update()
-    {
-        
-    }
 
 
     public void recibirDamage(int damage)
@@ -37,7 +25,6 @@ public class EnemigoVida : MonoBehaviour
         
         vidaEnemigo -= damage;
         vidaEnemigoSlider.value = vidaEnemigo;
-        print("recibio damage");
 
         if (vidaEnemigo <= 0)
         {
