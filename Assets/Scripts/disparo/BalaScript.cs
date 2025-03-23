@@ -5,12 +5,15 @@ public class BalaScript : MonoBehaviour
     public bool estaDisparado=false;
     public int damageShot=50;
 
+    public ParticleSystem efectoChoqueDisparo;
+
     public void objetoDisparo(){
         estaDisparado=true;
         
     }
     void OnCollisionEnter(Collision collision)
     {
+        efectoChoqueDisparo.Play();
         
         if(!estaDisparado)return;
         

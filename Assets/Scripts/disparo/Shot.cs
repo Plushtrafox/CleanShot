@@ -37,6 +37,8 @@ public class Shot : MonoBehaviour
 
     public bool estaSosteniendooObjetoPoder=false;
 
+    public ParticleSystem disparoBalaVFX;
+
 
     private void Awake()
     {
@@ -170,6 +172,8 @@ public class Shot : MonoBehaviour
         rb.angularVelocity = Vector3.zero; // Reiniciar la velocidad angular
 
         rb.AddForce(spawnPoint.forward * shotForce);
+
+        disparoBalaVFX.Play();
 
         BalaScript scriptDeBala=newBullet.GetComponent<BalaScript>();
         scriptDeBala.objetoDisparo();
