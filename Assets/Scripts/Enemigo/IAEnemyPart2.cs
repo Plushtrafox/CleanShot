@@ -55,7 +55,6 @@ public class IAEnemyPart2 : MonoBehaviour
         if(walkPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        //walkpoint reached
         
         
         }
