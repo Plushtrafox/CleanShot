@@ -192,7 +192,7 @@ public class Shot : MonoBehaviour
         Physics.Raycast(camara.position, camara.forward, out RaycastHit objetivo, 60f, enemigoObjetivo);
         arma.transform.LookAt(objetivo.transform);
 
-        Invoke("armaPosicionOriginal", 1f);
+
 
     }
 
