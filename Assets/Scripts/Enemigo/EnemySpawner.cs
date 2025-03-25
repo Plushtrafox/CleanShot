@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -29,13 +31,27 @@ public class EnemySpawner : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    { 
-       for (int i = 0;i < cantidadDeEnemigos; i++)
+    {
+        foreach (Transform lugar in spawnerList)
+        {
+            Vector3 spawnPosition = lugar.position;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(spawnPosition, out hit, 5.0f, NavMesh.AllAreas);
+            lugar.position = hit.position;
+            
+
+        }
+
+
+        for (int i = 0; i < cantidadDeEnemigos; i++)
         {
 
+
+
+
             int enemigoPorCrearAleatorio = Random.Range(0, 10);
-            int lugarAleatorio = Random.Range(0, spawnerList.Count-1);
-            if (enemigoPorCrearAleatorio == 0 || enemigoPorCrearAleatorio ==1 || enemigoPorCrearAleatorio ==2 )
+            int lugarAleatorio = Random.Range(0, spawnerList.Count - 1);
+            if (enemigoPorCrearAleatorio == 0 || enemigoPorCrearAleatorio == 1 || enemigoPorCrearAleatorio == 2)
             {
                 GameObject newEnemy = Instantiate(enemigoLargoAlcanze);
                 newEnemy.transform.position = spawnerList[lugarAleatorio].position;
@@ -47,7 +63,9 @@ public class EnemySpawner : MonoBehaviour
                 vidaNewEnemigo.puntosDeKillGameObject = managerDeEscena;
                 vidaNewEnemigo.puntosDeKill = scriptDePuntos;
 
-              
+                enemigoLargoAlcance.player = jugador.transform;
+
+
 
             }
             else
@@ -56,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
                 newEnemy.transform.position = spawnerList[lugarAleatorio].position;
                 enemyList.Add(newEnemy);
 
-                AtaqueEnemigoCortoAlcance enemigoCortoAlcance= newEnemy.GetComponent<AtaqueEnemigoCortoAlcance>();
+                AtaqueEnemigoCortoAlcance enemigoCortoAlcance = newEnemy.GetComponent<AtaqueEnemigoCortoAlcance>();
 
                 enemigoCortoAlcance.vidaJugador = jugadorVida;
                 enemigoCortoAlcance.jugador = jugador;
@@ -67,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
 
 
             }
-           
+
         }
     }
 

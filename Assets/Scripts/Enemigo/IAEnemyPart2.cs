@@ -13,7 +13,7 @@ public class IAEnemyPart2 : MonoBehaviour
 
     //patrolling
     public Vector3 walkPoint;
-    bool walkPointSet = true;
+    bool walkPointSet = false;
     public float walkPointRange;
 
     //Attacking
@@ -35,9 +35,8 @@ public class IAEnemyPart2 : MonoBehaviour
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
 
-        player = GameObject.Find("==Player==").transform;
+
     }
     private void Update()
     {
@@ -51,7 +50,7 @@ public class IAEnemyPart2 : MonoBehaviour
     }
     private void Patroling()
     {
-        if (walkPointSet) SearchWalkPoint();
+        if (!walkPointSet) SearchWalkPoint();
         if(walkPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
@@ -83,7 +82,7 @@ public class IAEnemyPart2 : MonoBehaviour
 
         if(!alreadyAttacked)
         {
-            GameObject balaDisparar=balasManager.DispararBala();//notifica del disparo a manager de balas y recibe el gameobject de la bala por disparar
+            GameObject balaDisparar= balasManager.DispararBala();//notifica del disparo a manager de balas y recibe el gameobject de la bala por disparar
            
             EnemyBullet balaScript = balaDisparar.GetComponent<EnemyBullet>();//buscar el script de la bala para notificar del disparo
             
