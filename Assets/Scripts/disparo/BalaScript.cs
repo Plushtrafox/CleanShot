@@ -11,26 +11,28 @@ public class BalaScript : MonoBehaviour
         estaDisparado=true;
         
     }
-    void OnCollisionEnter(Collision collision)
+
+    void OnTriggerEnter(Collider collision)
     {
         efectoChoqueDisparo.Play();
         
         if(!estaDisparado)return;
         
-        Collider objetoCollider = collision.collider;
+        Collider objetoCollider = collision;
         
         bool esEnemigo= objetoCollider.GetComponent<EnemigoVida>();
+        print(collision.name);
 
 
         if (esEnemigo)
         {
             EnemigoVida vidaEnemigo = objetoCollider.GetComponent<EnemigoVida>();
             vidaEnemigo.recibirDamage(damageShot);
-    
-               
 
+
+            estaDisparado = false;
         }
-        estaDisparado=false;
+        
 
         
         

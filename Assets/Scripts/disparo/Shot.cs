@@ -161,7 +161,7 @@ public class Shot : MonoBehaviour
 
     private void Shoot()
     {
-        ajustarAnguloArma();
+        //ajustarAnguloArma();
         GameObject newBullet = municionDisponible.Dequeue();
 
 
@@ -187,14 +187,14 @@ public class Shot : MonoBehaviour
 
     }
 
-    void ajustarAnguloArma()
-    {
-        Physics.Raycast(camara.position, camara.forward, out RaycastHit objetivo, 60f, enemigoObjetivo);
-        arma.transform.LookAt(objetivo.transform);
+    //void ajustarAnguloArma()
+    //{
+    //    Physics.Raycast(camara.position, camara.forward, out RaycastHit objetivo, 60f, enemigoObjetivo);
+    //    arma.transform.LookAt(objetivo.transform);
 
 
 
-    }
+    //}
 
 
 

@@ -4857,7 +4857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoDisparo: 0
-  bullet: {fileID: 8342961210915111741, guid: 3769fed843df57748bf7c59fb46fccf4, type: 3}
+  bullet: {fileID: 6649947864692908220, guid: db978d39e8786ec4c832fd908c52894c, type: 3}
   spawnPoint: {fileID: 1634373866}
   lugarMunicion: {fileID: 1200831930}
   municionUsada: []
@@ -4865,7 +4865,7 @@ MonoBehaviour:
   recargandoUI: {fileID: 1985261276}
   menuDePausa: {fileID: 1201453091}
   magSize: 10
-  shotForce: 3500
+  shotForce: 4500
   shotRate: 0.5
   tiempoEntreRecarga: 1
   estaSosteniendooObjetoPoder: 0
@@ -15424,43 +15424,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.112999916
+      value: 0.11252689
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25023967
+      value: -0.25024015
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.547
+      value: 0.5469938
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999231
+      value: 0.9999782
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.005882876
+      value: -0.005886671
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.010908562
+      value: -0.0029758236
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0005017334
+      value: 0.0004550487
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -0.674
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -0.341
       objectReference: {fileID: 0}
     - target: {fileID: 5493997306394900603, guid: a88218b523dd9474b806803ea44179bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 0.054
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
