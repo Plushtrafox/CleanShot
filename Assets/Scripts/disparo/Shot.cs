@@ -9,14 +9,14 @@ using Unity.VisualScripting;
 
 public class Shot : MonoBehaviour
 {   //intento 2 de varias armas
-    public enum TipoDisparo { Normal, Escopeta, Rafaga }
-    public TipoDisparo tipoDisparo;
+    //public enum TipoDisparo { Normal, Escopeta, Rafaga }
+    //public TipoDisparo tipoDisparo;
 
-    public GameObject bullet;
-    public Transform spawnPoint;
-    public Transform lugarMunicion;
-    public Queue<GameObject> municionDisponible = new Queue<GameObject>();
-    public List<GameObject> municionUsada = new List<GameObject>();
+    //public GameObject bullet;
+   /// public Transform spawnPoint;
+    //public Transform lugarMunicion;
+    //public Queue<GameObject> municionDisponible = new Queue<GameObject>();
+    //public List<GameObject> municionUsada = new List<GameObject>();
 
     public TextMeshProUGUI balasDisponiblesUI;
 
@@ -26,42 +26,41 @@ public class Shot : MonoBehaviour
 
     public int magSize = 10;
 
-    public float shotForce = 1500f;
+    //public float shotForce = 1500f;
     public float shotRate = 0.1f;
     private float shotRateTime = 0f;
 
 
     public float tiempoEntreRecarga = 1f;
-    private float tiempoTotalRecarga = 0f;
+    //private float tiempoTotalRecarga = 0f;
 
     private bool reloading;
 
     public bool estaSosteniendooObjetoPoder=false;
 
     public ParticleSystem disparoBalaVFX;
+    public ParticleSystem choqueBalaVFX;
 
     public GameObject arma;
     public Transform camara;
 
-    public LayerMask enemigoObjetivo;
+    //public LayerMask enemigoObjetivo;
 
     // disparo 2.0
     public float distanciaMaximaDisparo = 70f;
     public int cantidadBalasActuales;
     public float fuerzaChoqueDisparo = 50f;
+    public int damageShot = 50;
 
     EnemigoVida vidaDeEnemigo;
+
+    public GameObject choqueBalaVFXGameObject;
 
 
     private void Awake()
     {
         cantidadBalasActuales = magSize;
-        for (int i=0; i < magSize; i++)
-        {
-            GameObject newBullet = Instantiate(bullet, lugarMunicion.position, Quaternion.identity);
-            
-            ReloadBullet(newBullet);
-        }
+
     }
 
 
@@ -73,14 +72,14 @@ public class Shot : MonoBehaviour
             {
 
 
-                if (Input.GetKeyDown(KeyCode.R)&& municionDisponible.Count!= magSize || municionDisponible.Count == 0)
+                if (Input.GetKeyDown(KeyCode.R)&& cantidadBalasActuales!= magSize || cantidadBalasActuales == 0)
                 {
                     Reload();
                 }
 
                 if (Input.GetButton("Fire1") && !reloading)
                 {
-                    if (municionDisponible.Count > 0)
+                    if (cantidadBalasActuales > 0)
                     {
                         shotRateTime -= Time.deltaTime;
 
@@ -168,33 +167,33 @@ public class Shot : MonoBehaviour
  //       scriptDeBala.objetoDisparo();
  //   }
 
-    private void Shoot()
-    {
-        //ajustarAnguloArma();
-        GameObject newBullet = municionDisponible.Dequeue();
+    //private void Shoot()
+    //{
+    //    //ajustarAnguloArma();
+    //    GameObject newBullet = municionDisponible.Dequeue();
 
 
-        municionUsada.Add(newBullet);
+    //    municionUsada.Add(newBullet);
 
 
-        UseBullet(newBullet);
+    //    UseBullet(newBullet);
 
-        newBullet.transform.position = spawnPoint.position;
-        newBullet.transform.rotation = spawnPoint.rotation;
+    //    newBullet.transform.position = spawnPoint.position;
+    //    newBullet.transform.rotation = spawnPoint.rotation;
 
-        Rigidbody rb = newBullet.GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero; // Reiniciar la velocidad
-        rb.angularVelocity = Vector3.zero; // Reiniciar la velocidad angular
+    //    Rigidbody rb = newBullet.GetComponent<Rigidbody>();
+    //    rb.linearVelocity = Vector3.zero; // Reiniciar la velocidad
+    //    rb.angularVelocity = Vector3.zero; // Reiniciar la velocidad angular
 
-        rb.AddForce(spawnPoint.forward * shotForce);
+    //    rb.AddForce(spawnPoint.forward * shotForce);
 
-        disparoBalaVFX.Play();
+    //    disparoBalaVFX.Play();
 
-        BalaScript scriptDeBala=newBullet.GetComponent<BalaScript>();
-        scriptDeBala.objetoDisparo();
-        actualizarBalasUI();
+    //    BalaScript scriptDeBala=newBullet.GetComponent<BalaScript>();
+    //    scriptDeBala.objetoDisparo();
+    //    actualizarBalasUI();
 
-    }
+    //}
     private void Shoot2()
     {
         RaycastHit objetivo;
@@ -202,49 +201,58 @@ public class Shot : MonoBehaviour
 
         Rigidbody rbObjetivo = objetivo.collider.gameObject.GetComponent<Rigidbody>();
 
-        print(objetivo.collider.gameObject.name);
 
         if (rbObjetivo)
         {
             rbObjetivo.AddForce(camara.forward * fuerzaChoqueDisparo, ForceMode.Impulse);
 
-            print("hay un objetivo");
+
+
         }
 
         disparoBalaVFX.Play();
 
-        actualizarBalasUI();
         
+
+        Collider objetoCollider = objetivo.collider;
+        choqueBalaVFXGameObject.transform.position = objetivo.point;
+        choqueBalaVFX.Play();
+
+        bool esEnemigo = objetoCollider.GetComponent<EnemigoVida>();
+
+
+        if (esEnemigo)
+        {
+            EnemigoVida vidaEnemigo = objetoCollider.GetComponent<EnemigoVida>();
+            vidaEnemigo.recibirDamage(damageShot);
+
+        }
+        cantidadBalasActuales -= 1;
+
+        actualizarBalasUI();
+
+
     }
 
-    //void ajustarAnguloArma()
-    //{
-    //    Physics.Raycast(camara.position, camara.forward, out RaycastHit objetivo, 60f, enemigoObjetivo);
-    //    arma.transform.LookAt(objetivo.transform);
 
-
-
-    //}
 
 
 
     private void Reload()
     {
         Invoke("TerminoRecarga", 1f);
-        
-        
-        reloading = true;
-        tiempoTotalRecarga = tiempoEntreRecarga;
 
-        foreach(GameObject bullet in municionUsada)
-        {
-            ReloadBullet(bullet);
-        }
-
-        municionUsada.Clear();
         recargandoUI.SetActive(true);
-        
+
+
+
+        reloading = true;
+        //tiempoTotalRecarga = tiempoEntreRecarga;
+
+        cantidadBalasActuales = magSize;
+
     }
+
     void TerminoRecarga()
     {
         recargandoUI.SetActive(false);
@@ -254,20 +262,12 @@ public class Shot : MonoBehaviour
 
     }
 
-    private void UseBullet(GameObject targetBullet)
-    {
-        targetBullet.SetActive(true);
-    }
 
-    private void ReloadBullet(GameObject targetBullet)
-    {
-        targetBullet.SetActive(false);
-        municionDisponible.Enqueue(targetBullet);
-        targetBullet.transform.position = lugarMunicion.position;
-    }
+
+
 
     public void actualizarBalasUI()
     {
-        balasDisponiblesUI.text = municionDisponible.Count.ToString();
+        balasDisponiblesUI.text = cantidadBalasActuales.ToString();
     }
 }
