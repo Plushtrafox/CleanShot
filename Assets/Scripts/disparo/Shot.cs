@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 
 public class Shot : MonoBehaviour
@@ -44,9 +45,17 @@ public class Shot : MonoBehaviour
 
     public LayerMask enemigoObjetivo;
 
+    // disparo 2.0
+    public float distanciaMaximaDisparo = 70f;
+    public int cantidadBalasActuales;
+    public float fuerzaChoqueDisparo = 50f;
+
+    EnemigoVida vidaDeEnemigo;
+
 
     private void Awake()
     {
+        cantidadBalasActuales = magSize;
         for (int i=0; i < magSize; i++)
         {
             GameObject newBullet = Instantiate(bullet, lugarMunicion.position, Quaternion.identity);
@@ -77,7 +86,7 @@ public class Shot : MonoBehaviour
 
                         if (shotRateTime <= 0)
                         {
-                            Shoot();
+                            Shoot2();
 
                             shotRateTime = shotRate;
                         }
@@ -185,6 +194,27 @@ public class Shot : MonoBehaviour
         scriptDeBala.objetoDisparo();
         actualizarBalasUI();
 
+    }
+    private void Shoot2()
+    {
+        RaycastHit objetivo;
+        Physics.Raycast(camara.position, camara.forward, out objetivo, distanciaMaximaDisparo);
+
+        Rigidbody rbObjetivo = objetivo.collider.gameObject.GetComponent<Rigidbody>();
+
+        print(objetivo.collider.gameObject.name);
+
+        if (rbObjetivo)
+        {
+            rbObjetivo.AddForce(camara.forward * fuerzaChoqueDisparo, ForceMode.Impulse);
+
+            print("hay un objetivo");
+        }
+
+        disparoBalaVFX.Play();
+
+        actualizarBalasUI();
+        
     }
 
     //void ajustarAnguloArma()

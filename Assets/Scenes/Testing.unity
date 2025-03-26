@@ -4875,6 +4875,9 @@ MonoBehaviour:
   enemigoObjetivo:
     serializedVersion: 2
     m_Bits: 128
+  distanciaMaximaDisparo: 70
+  cantidadBalasActuales: 0
+  fuerzaChoqueDisparo: 50
 --- !u!114 &843907289
 MonoBehaviour:
   m_ObjectHideFlags: 0
