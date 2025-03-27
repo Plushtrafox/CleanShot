@@ -199,10 +199,10 @@ public class Shot : MonoBehaviour
         RaycastHit objetivo;
         Physics.Raycast(camara.position, camara.forward, out objetivo, distanciaMaximaDisparo);
 
-        Rigidbody rbObjetivo = objetivo.collider.gameObject.GetComponent<Rigidbody>();
+       
 
 
-        if (rbObjetivo)
+        if (objetivo.collider!=null && objetivo.collider.gameObject.TryGetComponent(out Rigidbody rbObjetivo))
         {
             rbObjetivo.AddForce(camara.forward * fuerzaChoqueDisparo, ForceMode.Impulse);
 
@@ -215,8 +215,13 @@ public class Shot : MonoBehaviour
         
 
         Collider objetoCollider = objetivo.collider;
-        choqueBalaVFXGameObject.transform.position = objetivo.point;
-        choqueBalaVFX.Play();
+
+        if (choqueBalaVFX && choqueBalaVFXGameObject)
+        {
+            choqueBalaVFXGameObject.transform.position = objetivo.point;
+            choqueBalaVFX.Play();
+        }
+
 
         bool esEnemigo = objetoCollider.GetComponent<EnemigoVida>();
 
