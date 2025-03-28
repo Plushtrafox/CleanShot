@@ -28,7 +28,9 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
 
     public float fuerzaRetrocesoAtaque = 2f;
 
-    public bool estaSostenido = false;
+    public bool estaInactivo = false;
+
+    public float tiempoDeMareo = 5f;
 
 
 
@@ -75,7 +77,7 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
 
     private void Update()
     {
-        if (estaSostenido == false)
+        if (estaInactivo == false)
         {
             Comportamiento_Enemigo();
         }
@@ -94,5 +96,17 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
     public void ActivarAtacarJugador()
     {
         puedoAtacar = true;
+    }
+
+        public void mareoEnemigo()
+    {
+        estaInactivo=true;
+        Invoke("recuperacionMareoEnemigo",tiempoDeMareo);
+    }
+
+        public void recuperacionMareoEnemigo()
+    {
+        estaInactivo=false;
+
     }
 }

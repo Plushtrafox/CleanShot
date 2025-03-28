@@ -31,13 +31,14 @@ public class IAEnemyPart2 : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     public GameObject projectile;
 
-    public bool estaSostenido = false;
+    public bool estaInactivo = false;
+    public float tiempoDeMareo=5f;
 
 
 
     private void Update()
     {
-        if (estaSostenido == false)
+        if (estaInactivo == false)
         {
             //check for sight and attack range
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -120,5 +121,17 @@ public class IAEnemyPart2 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);        
+    }
+
+    public void mareoEnemigo()
+    {
+        estaInactivo=true;
+        Invoke("recuperacionMareoEnemigo",tiempoDeMareo);
+    }
+
+        public void recuperacionMareoEnemigo()
+    {
+        estaInactivo=false;
+
     }
 }

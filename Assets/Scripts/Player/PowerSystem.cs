@@ -36,6 +36,8 @@ public class PowerSystem : MonoBehaviour
     public bool enemigoActualEsCortoAlcance = false;
     public bool enemigoActualEsLargoAlcance = false;
 
+    public float fuerzaMareo = 10f;
+
     [Header("Referencias al UI poderes")]
     public Slider empujarPoderCargaUI;
     public Slider sostenerPoderCargaUI;
@@ -72,6 +74,7 @@ public class PowerSystem : MonoBehaviour
     public bool atraerActivo = true;
     public bool sostenerActivo = true;
     public bool explotarActivo = true;
+    public bool mareoActivo=true;
 
 
 
@@ -81,6 +84,7 @@ public class PowerSystem : MonoBehaviour
     // 1 Atraer
     // 2 Explotar
     // 3 Sostener
+    // 4 Marear
 
 
 
@@ -99,6 +103,7 @@ public class PowerSystem : MonoBehaviour
 
         if (menuDePausa.estaPausado == false)
         {
+            if(Input.GetKeyDown(KeyCode.Alpha1))poderActual=4;
 
             if (estaSosteniendo)
             {
@@ -106,7 +111,6 @@ public class PowerSystem : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                     dispararObjetoSostenidoPoder();
-
                 }
 
             }
@@ -129,6 +133,10 @@ public class PowerSystem : MonoBehaviour
                     case 3:
                         if (sostenerActivo) sostenerObjectoPoder();
                         break;
+
+                    case 4:
+                        if(mareoActivo) marearPoder();
+                    break;
                 }
             }
         }
@@ -215,12 +223,12 @@ public class PowerSystem : MonoBehaviour
             if (enemigoLargoAlcance != null)
             {
 
-                enemigoLargoAlcance.estaSostenido = true;
+                enemigoLargoAlcance.estaInactivo = true;
                 enemigoActualEsLargoAlcance = true;
             }
             else if (enemigoCortoAlcance!=null)
             {
-                enemigoCortoAlcance.estaSostenido = true;
+                enemigoCortoAlcance.estaInactivo = true;
                 enemigoActualEsCortoAlcance = true;
             }
 
@@ -247,14 +255,14 @@ public class PowerSystem : MonoBehaviour
             if (enemigoActualEsCortoAlcance)
             {
                 objetoSostenido.gameObject.TryGetComponent(out EnemigoCortoAlcanceScript enemigoCortoAlcance);
-                enemigoCortoAlcance.estaSostenido = false;
+                enemigoCortoAlcance.estaInactivo = false;
                 enemigoActualEsCortoAlcance = false;
 
             }
             else if (enemigoActualEsLargoAlcance)
             {
                 objetoSostenido.gameObject.TryGetComponent(out IAEnemyPart2 enemigoLargoAlcance);
-                enemigoLargoAlcance.estaSostenido = false;
+                enemigoLargoAlcance.estaInactivo = false;
                 enemigoActualEsLargoAlcance = false;
             }
 
@@ -424,6 +432,30 @@ public class PowerSystem : MonoBehaviour
         {
             explotarPoderCargaUI.value = explotarCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
         }
+    }
+
+    void marearPoder()
+    {
+        Physics.Raycast(camaraJugador.position, camaraJugador.forward, out RaycastHit objetivo, 30f);
+
+        objetivo.collider.TryGetComponent(out Rigidbody rbObjetivo);
+
+        rbObjetivo.AddTorque(transform.right * fuerzaMareo);
+
+        objetivo.collider.TryGetComponent(out IAEnemyPart2 enemigoLargoAlcance);
+        objetivo.collider.TryGetComponent(out EnemigoCortoAlcanceScript enemigoCortoAlcance);
+        if(enemigoLargoAlcance)
+        {
+            enemigoLargoAlcance.mareoEnemigo();
+        }
+        else if(enemigoCortoAlcance)
+        {
+            enemigoCortoAlcance.mareoEnemigo();
+
+
+        }
+
+
     }
 
 
