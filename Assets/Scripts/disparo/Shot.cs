@@ -214,7 +214,7 @@ public class Shot : MonoBehaviour
 
         
 
-        Collider objetoCollider = objetivo.collider;
+
 
         if (choqueBalaVFX && choqueBalaVFXGameObject)
         {
@@ -223,13 +223,13 @@ public class Shot : MonoBehaviour
         }
 
 
-        bool esEnemigo = objetoCollider.GetComponent<EnemigoVida>();
 
 
-        if (esEnemigo)
+
+        if (objetivo.collider.gameObject.TryGetComponent(out EnemigoVida vidaObjetivo)
+)
         {
-            EnemigoVida vidaEnemigo = objetoCollider.GetComponent<EnemigoVida>();
-            vidaEnemigo.recibirDamage(damageShot);
+            vidaObjetivo.recibirDamage(damageShot);
 
         }
         cantidadBalasActuales -= 1;

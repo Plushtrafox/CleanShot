@@ -31,22 +31,24 @@ public class IAEnemyPart2 : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     public GameObject projectile;
 
+    public bool estaSostenido = false;
 
 
-    private void Awake()
-    {
 
-
-    }
     private void Update()
     {
-        //check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position,sightRange,whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position,attackRange,whatIsPlayer);
+        if (estaSostenido == false)
+        {
+            //check for sight and attack range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if(!playerInSightRange && !playerInAttackRange) Patroling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if(playerInSightRange && playerInAttackRange) Attackplayer();
+            if (!playerInSightRange && !playerInAttackRange) Patroling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && playerInAttackRange) Attackplayer();
+
+        }
+
     }
     private void Patroling()
     {

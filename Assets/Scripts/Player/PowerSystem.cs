@@ -33,6 +33,9 @@ public class PowerSystem : MonoBehaviour
 
     public MenuArmas menuDeArmas;
 
+    public bool enemigoActualEsCortoAlcance = false;
+    public bool enemigoActualEsLargoAlcance = false;
+
     [Header("Referencias al UI poderes")]
     public Slider empujarPoderCargaUI;
     public Slider sostenerPoderCargaUI;
@@ -207,6 +210,20 @@ public class PowerSystem : MonoBehaviour
 
             disparoScript.estaSosteniendooObjetoPoder = true;
 
+            objetoSostenido.gameObject.TryGetComponent(out IAEnemyPart2 enemigoLargoAlcance);
+            objetoSostenido.gameObject.TryGetComponent(out EnemigoCortoAlcanceScript enemigoCortoAlcance);
+            if (enemigoLargoAlcance != null)
+            {
+
+                enemigoLargoAlcance.estaSostenido = true;
+                enemigoActualEsLargoAlcance = true;
+            }
+            else if (enemigoCortoAlcance!=null)
+            {
+                enemigoCortoAlcance.estaSostenido = true;
+                enemigoActualEsCortoAlcance = true;
+            }
+
         }
 
     }
@@ -224,6 +241,24 @@ public class PowerSystem : MonoBehaviour
             {
                 ObjetoSostenidoDisparado objetoDisparado = objetoSostenido.GetComponent<ObjetoSostenidoDisparado>();
                 objetoDisparado.objetoDisparo();
+                
+
+
+            if (enemigoActualEsCortoAlcance)
+            {
+                objetoSostenido.gameObject.TryGetComponent(out EnemigoCortoAlcanceScript enemigoCortoAlcance);
+                enemigoCortoAlcance.estaSostenido = false;
+                enemigoActualEsCortoAlcance = false;
+
+            }
+            else if (enemigoActualEsLargoAlcance)
+            {
+                objetoSostenido.gameObject.TryGetComponent(out IAEnemyPart2 enemigoLargoAlcance);
+                enemigoLargoAlcance.estaSostenido = false;
+                enemigoActualEsLargoAlcance = false;
+            }
+
+
             }
 
 
@@ -390,29 +425,6 @@ public class PowerSystem : MonoBehaviour
             explotarPoderCargaUI.value = explotarCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
         }
     }
-
-    //public void actualizarBarraPoderElegidoUI()
-    //{
-    //    switch (poderActual)
-    //    {
-    //        case 0:
-    //            if (!empujeActivo)
-    //            {
-    //                barraPoderActualUI.value = empujarPoderCargaUI.value;
-    //            }
-
-    //            break;
-    //        case 1:
-    //            if (!atraerActivo) jaloObjectoPoder();
-    //            break;
-    //        case 2:
-    //            if (!explotarActivo) ExplosionPoder();
-    //            break;
-    //        case 3:
-    //            if (!sostenerActivo) sostenerObjectoPoder();
-    //            break;
-    //    }
-    //}
 
 
 }

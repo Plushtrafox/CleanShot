@@ -28,12 +28,10 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
 
     public float fuerzaRetrocesoAtaque = 2f;
 
+    public bool estaSostenido = false;
 
-    void Awake()
-    {
-        target = GameObject.Find("==Player==");
 
-    }
+
 
     public void Comportamiento_Enemigo()
     {
@@ -77,7 +75,11 @@ public class EnemigoCortoAlcanceScript : MonoBehaviour
 
     private void Update()
     {
-        Comportamiento_Enemigo();
+        if (estaSostenido == false)
+        {
+            Comportamiento_Enemigo();
+        }
+        
     }
 
     public void CancelarAtacarJugador()

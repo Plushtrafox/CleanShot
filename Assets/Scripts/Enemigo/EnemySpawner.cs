@@ -75,6 +75,7 @@ public class EnemySpawner : MonoBehaviour
                 enemyList.Add(newEnemy);
 
                 AtaqueEnemigoCortoAlcance enemigoCortoAlcance = newEnemy.GetComponent<AtaqueEnemigoCortoAlcance>();
+                EnemigoCortoAlcanceScript scriptEnemigoCortoAlcance = newEnemy.GetComponent<EnemigoCortoAlcanceScript>();
 
                 enemigoCortoAlcance.vidaJugador = jugadorVida;
                 enemigoCortoAlcance.jugador = jugador;
@@ -82,6 +83,7 @@ public class EnemySpawner : MonoBehaviour
                 EnemigoVida vidaNewEnemigo = newEnemy.GetComponent<EnemigoVida>();
                 vidaNewEnemigo.puntosDeKillGameObject = managerDeEscena;
                 vidaNewEnemigo.puntosDeKill = scriptDePuntos;
+                scriptEnemigoCortoAlcance.target = jugador;
 
 
             }
