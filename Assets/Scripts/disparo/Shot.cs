@@ -222,7 +222,13 @@ public class Shot : MonoBehaviour
             choqueBalaVFX.Play();
         }
 
+        if (objetivo.collider.gameObject.TryGetComponent(out BotonRampaManual botonRampa)
+)
+        {
+            botonRampa.NotificarAbrirRampa();
+            print("disparo notifica a boton");
 
+        }
 
 
 
