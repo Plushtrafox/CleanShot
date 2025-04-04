@@ -5027,6 +5027,7 @@ GameObject:
   - component: {fileID: 766230489}
   - component: {fileID: 766230488}
   - component: {fileID: 766230487}
+  - component: {fileID: 766230493}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -5213,6 +5214,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &766230493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766230486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b30b7329318e3a4faa69a9ea8a4a090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rampaManualScript: {fileID: 1470730154}
 --- !u!1 &791182086
 GameObject:
   m_ObjectHideFlags: 0
@@ -6817,8 +6831,8 @@ MonoBehaviour:
   estadoPuerta: 0
   velocidadRotacion: 5
   tiempoPuertaQuieta: 2
-  rotacionPuertaAbierta: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
-  rotacionPuertaCerrada: {x: 0, y: 0, z: 0, w: 1}
+  rotacionPuertaAbierta: {x: 0.70710677, y: 0.70710677, z: -0.00000003090862, w: -0.00000003090862}
+  rotacionPuertaCerrada: {x: 0, y: 1, z: 0, w: -0.00000004371139}
 --- !u!1 &1023116717
 GameObject:
   m_ObjectHideFlags: 0
@@ -11243,6 +11257,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463448726}
   m_CullTransparentMesh: 1
+--- !u!1 &1470730150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470730153}
+  - component: {fileID: 1470730154}
+  m_Layer: 0
+  m_Name: ==PisoPruebaManual==
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470730153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470730150}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -29.880001, y: 0.29, z: 63.26}
+  m_LocalScale: {x: 2.64, y: 2.64, z: 2.64}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 379203681}
+  - {fileID: 1163546976}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1470730154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470730150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30c7a040616d4f40acf84279ec99c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadRotacion: 5
+  tiempoPuertaQuieta: 2
+  rotacionPuertaAbierta: {x: 0, y: 0, z: 0, w: 1}
+  rotacionPuertaCerrada: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
+  velocidadDeActualizacion: 0.1
+  abriendo: 0
+  cerrando: 0
+  abierto: 0
 --- !u!1 &1486031144
 GameObject:
   m_ObjectHideFlags: 0
@@ -11318,39 +11386,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486031144}
   m_CullTransparentMesh: 1
---- !u!1 &1470730150
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1470730153}
-  m_Layer: 0
-  m_Name: ==PisoPruebaManual==
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1470730153
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470730150}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.880001, y: 0.29, z: 63.26}
-  m_LocalScale: {x: 2.64, y: 2.64, z: 2.64}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 379203681}
-  - {fileID: 1163546976}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1487683384
 GameObject:
   m_ObjectHideFlags: 0
