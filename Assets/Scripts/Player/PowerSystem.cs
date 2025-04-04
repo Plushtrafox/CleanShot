@@ -43,6 +43,7 @@ public class PowerSystem : MonoBehaviour
     public Slider sostenerPoderCargaUI;
     public Slider atraerPoderCargaUI;
     public Slider explotarPoderCargaUI;
+    public Slider marearPoderCargaUI;
     public Slider barraPoderActualUI;
 
 
@@ -51,12 +52,16 @@ public class PowerSystem : MonoBehaviour
     public float atraerCooldown = 1f;
     public float sostenerCooldown = 3f;
     public float explotarCooldown = 10f;
+    public float marearCooldown = 6f;
+
 
     [Header("Poderes Cooldown porcentaje")]
     public float empujeCooldownPorcentaje = 100f;
     public float atraerCooldownPorcentaje = 100f;
     public float sostenerCooldownPorcentaje = 100f;
     public float explotarCooldownPorcentaje = 100f;
+    public float marearCooldownPorcentaje = 100f;
+
 
 
     [Header("intervalo para actualizar UI de cooldown")]
@@ -67,6 +72,7 @@ public class PowerSystem : MonoBehaviour
     public float atraerCooldownPorcentajeActualizacionUI;
     public float sostenerCooldownPorcentajeActualizacionUI;
     public float explotarCooldownPorcentajeActualizacionUI;
+    public float marearCooldownPorcentajeActualizacionUI;
 
 
     [Header("Estado de poderes")]
@@ -103,7 +109,7 @@ public class PowerSystem : MonoBehaviour
 
         if (menuDePausa.estaPausado == false)
         {
-            if(Input.GetKeyDown(KeyCode.Alpha1))poderActual=4;
+
 
             if (estaSosteniendo)
             {
@@ -433,29 +439,72 @@ public class PowerSystem : MonoBehaviour
             explotarPoderCargaUI.value = explotarCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
         }
     }
-
+    
+    
+    //habilidad mareo
     void marearPoder()
     {
         Physics.Raycast(camaraJugador.position, camaraJugador.forward, out RaycastHit objetivo, 30f);
+        if (objetivo.collider.TryGetComponent(out Rigidbody rbObjetivo))
+        {
+            rbObjetivo.AddTorque(transform.up * fuerzaMareo);
 
-        objetivo.collider.TryGetComponent(out Rigidbody rbObjetivo);
+        }
 
-        rbObjetivo.AddTorque(transform.right * fuerzaMareo);
-
-        objetivo.collider.TryGetComponent(out IAEnemyPart2 enemigoLargoAlcance);
-        objetivo.collider.TryGetComponent(out EnemigoCortoAlcanceScript enemigoCortoAlcance);
-        if(enemigoLargoAlcance)
+        
+        
+        if(objetivo.collider.TryGetComponent(out IAEnemyPart2 enemigoLargoAlcance))
         {
             enemigoLargoAlcance.mareoEnemigo();
+            // Calcula el incremento porcentual
+            marearCooldownPorcentajeActualizacionUI = (100f / marearCooldown) * cooldownIntervaloActualizacionUI;
+            marearCooldownPorcentaje = 0f;//reinicia el cooldown
+            mareoActivo = false;
+
+            // Inicia la actualización repetitiva
+            InvokeRepeating("ActualizarBarraCooldownMarear", 0f, cooldownIntervaloActualizacionUI);
         }
-        else if(enemigoCortoAlcance)
+        else if(objetivo.collider.TryGetComponent(out EnemigoCortoAlcanceScript enemigoCortoAlcance))
         {
             enemigoCortoAlcance.mareoEnemigo();
+            // Calcula el incremento porcentual
+            marearCooldownPorcentajeActualizacionUI = (100f / marearCooldown) * cooldownIntervaloActualizacionUI;
+            marearCooldownPorcentaje = 0f;//reinicia el cooldown
+            mareoActivo = false;
 
+            // Inicia la actualización repetitiva
+            InvokeRepeating("ActualizarBarraCooldownMarear", 0f, cooldownIntervaloActualizacionUI);
 
         }
 
 
+
+
+    }
+    void ActualizarBarraCooldownMarear()
+    {
+        // Aumenta el porcentaje actual
+        marearCooldownPorcentaje += marearCooldownPorcentajeActualizacionUI;
+
+        if (poderActual == 4)
+        {
+            barraPoderActualUI.value = marearCooldownPorcentaje / 100f;
+
+        }
+
+        // Limita el porcentaje a 100%
+        if (marearCooldownPorcentaje >= 100f)
+        {
+            mareoActivo = true;
+            marearCooldownPorcentaje = 100f;
+            CancelInvoke("ActualizarBarraCooldownMarear"); // Detiene la actualización repetitiva
+        }
+
+        // Actualiza la barra de UI
+        if (marearPoderCargaUI != null)
+        {
+            marearPoderCargaUI.value = marearCooldownPorcentaje / 100f; // Convierte a un valor entre 0 y 1
+        }
     }
 
 
