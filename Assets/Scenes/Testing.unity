@@ -5594,7 +5594,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843907277}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 30
   m_Drag: 0
   m_AngularDrag: 20
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -5723,7 +5723,7 @@ MonoBehaviour:
   velocidadCorrer: 15
   rb: {fileID: 843907279}
   runSpeed: 8
-  fuerzaSalto: 0.2
+  fuerzaSalto: 60
   tocandoPiso: 1
 --- !u!114 &843907285
 MonoBehaviour:

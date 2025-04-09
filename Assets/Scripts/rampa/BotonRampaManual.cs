@@ -7,6 +7,5 @@ public class BotonRampaManual : MonoBehaviour
     public void NotificarAbrirRampa()
     {
         rampaManualScript.SubirPuerta();
-        print("notificando en boton");
     }
 }

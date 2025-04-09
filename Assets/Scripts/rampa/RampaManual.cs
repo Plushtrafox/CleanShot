@@ -33,7 +33,7 @@ public class RampaManual : MonoBehaviour
 
     public void SubirPuerta()
     {
-        if (abriendo == false && !abierto)
+        if (!abriendo && !abierto)
         {
             //InvokeRepeating("abrirPuerta", 0f, velocidadDeActualizacion);
             abriendo = true;
@@ -45,7 +45,6 @@ public class RampaManual : MonoBehaviour
 
     void abrirPuerta()
     {
-        print("se abre la puerta?");
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rotacionPuertaAbierta, velocidadRotacion*Time.deltaTime);
         if (transform.rotation == rotacionPuertaAbierta)
@@ -63,8 +62,8 @@ public class RampaManual : MonoBehaviour
     }
     void notificarPuertaAbierta()
     {
-        
         cerrando = true;
+        abierto = false;
     }
     void cerrarPuerta()
     {
@@ -73,7 +72,7 @@ public class RampaManual : MonoBehaviour
         if (transform.rotation == rotacionPuertaCerrada)
         {
             //CancelInvoke("cerrarPuerta");
-            abriendo = false;
+            cerrando = false;
 
         }
     }
