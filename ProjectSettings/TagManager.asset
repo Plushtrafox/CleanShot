@@ -5,15 +5,17 @@ TagManager:
   serializedVersion: 3
   tags:
   - EnemyHitbox
+  - EnemyTag
+  - Escenario
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Escenario
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Enemigo
   - 
   - 
   - 
